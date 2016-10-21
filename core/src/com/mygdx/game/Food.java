@@ -34,9 +34,16 @@ public class Food {
 	{
 		return foodImg;
 	}
+	
 	public void render(){
 		batch.begin();
 		batch.draw(foodImg,position.x,position.y);
 		batch.end();
+	}
+	
+	public void drawFood()
+	{
+        batch.draw(foodImg, position.x, position.y);    
+
 	}
 }
