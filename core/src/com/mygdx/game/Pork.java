@@ -14,19 +14,18 @@ public class Pork {
 	private Texture porkImg;
 	private SpriteBatch batch;
 	
-	public Pork(Texture porkImg){
-		//porkImg = new Texture("pork1raw.png");
-		this.porkImg=porkImg;
-		position.x=100;
-		position.y=100;
-		//generatePosition();
+	public Pork(){
+		porkImg = new Texture("pork1raw.png");
+//		this.porkImg=porkImg;
+		generatePosition();
 		System.out.println("pork generated");
 		
 	}
 	public void generatePosition(){
 		Random rand = new Random();
-		position.x = rand.nextInt(750) + 250;
-		position.y = rand.nextInt(250) + 250;
+		int x = rand.nextInt(750) + 250;
+		int y = rand.nextInt(250) + 250;
+		position = new Vector2(x,y);
 		System.out.printf("{0} {1}",position.x,position.y);
 	}
 	public Texture getPorkImg(){
