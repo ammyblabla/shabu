@@ -5,10 +5,12 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.mygdx.game.ShabuGame;
 
 public class DesktopLauncher {
+	private static ShabuGame shabuGame;
 	public static void main (String[] arg) {
+		shabuGame = new ShabuGame();
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width= 1280;
-		config.height= 720;
+		config.width= shabuGame.WIDTH;
+		config.height= shabuGame.HEIGHT;
 		new LwjglApplication(new ShabuGame(), config);
 	}
 	

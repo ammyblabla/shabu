@@ -10,7 +10,7 @@ public class Food {
 	private Vector2 position;
 	private Texture foodImg;
 	private SpriteBatch batch;
-	
+	public static float DELAY = 10;
 	public Food(String imagefile)
 	{
 		foodImg = new Texture(imagefile+".png");
