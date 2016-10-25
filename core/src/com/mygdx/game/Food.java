@@ -46,4 +46,12 @@ public class Food {
         batch.draw(foodImg, position.x, position.y);    
 
 	}
+	
+	public float getX(){
+		return position.x;
+	}
+	
+	public float getY(){
+		return position.y;
+	}
 }
