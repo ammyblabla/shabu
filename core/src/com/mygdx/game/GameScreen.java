@@ -14,7 +14,7 @@ public class GameScreen extends ScreenAdapter {
 	private ShabuGame shabuGame;
 	private Texture shabuImg;
 	private List<Food> foods = new ArrayList<Food>();
-	public float DELAY = 2;
+	public float DELAY = 0.5f;
 	public float HOWLONGLASTFOOD;
 	private int INIT_FOOD = 1;
 
@@ -47,29 +47,33 @@ public class GameScreen extends ScreenAdapter {
 	
 	public void update(float delta) 
 	{
-//		releaseFood(delta);
+		releaseFood(delta);
 		
 		if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
 			int pointerX = Gdx.input.getX();
 			int pointerY = Gdx.input.getY();
-			System.out.println("X " + pointerX + " Y "+pointerY);
+			System.out.println("ptrX " + pointerX + " ptrY "+pointerY);
 			for(int i=0; i < foods.size(); i++)
 			{
 				Food food = foods.get(i);
-				System.out.println("foodX "+food.getX()+" foodY "+food.getY());
 				
-				float deltaX = Math.abs(pointerX-food.getX());
-				float deltaY = Math.abs(pointerY-food.getY()+food.getFoodImg().getHeight());
+				float foodX = food.getX();
+				float foodY = 720-food.getY();
 				
-				System.out.println("deltaX " + deltaX + " deltaY " + deltaY);
+				//System.out.println("foodX "+foodX+" foodY "+foodY);
+
+				float deltaX = pointerX-foodX;
+				float deltaY = (-1)*(pointerY-foodY);
+				
+				//System.out.println("deltaX " + deltaX + " deltaY " + deltaY);
 				if(deltaX >= 0 && deltaX <= food.getFoodImg().getWidth() && deltaY >= 0 && deltaY <= food.getFoodImg().getHeight())
 				{
 					//
 					//remove foods
-					System.out.println("remove "+"foodX "+food.getX()+" foodY "+food.getY()+" cursorX "+pointerX+" cursorY "+pointerY);
+					//System.out.println("remove "+"foodX "+food.getX()+" foodY "+food.getY()+" cursorX "+pointerX+" cursorY "+pointerY);
 					foods.remove(foods.get(i));
 				}
-				System.out.println();
+				//System.out.println();
 			}
 			
 		}

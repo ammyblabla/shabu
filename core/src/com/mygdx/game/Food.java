@@ -5,6 +5,7 @@ import java.util.Random;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class Food {
 	private Vector2 position;
@@ -15,6 +16,7 @@ public class Food {
 	{
 		foodImg = new Texture(imagefile+".png");
 		generatePosition();
+//		System.out.println("x "+ position.x + " y "+ (720-position.y));
 	}
 	
 	private void generatePosition()
