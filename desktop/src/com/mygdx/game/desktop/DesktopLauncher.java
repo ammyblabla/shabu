@@ -13,6 +13,4 @@ public class DesktopLauncher {
 		config.height= shabuGame.HEIGHT;
 		new LwjglApplication(new ShabuGame(), config);
 	}
-	
-	
 }
