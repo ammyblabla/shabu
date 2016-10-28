@@ -20,7 +20,9 @@ public class GameScreen extends ScreenAdapter {
 	private float HOWLONGLASTFOOD;
 	private int score;
 	private BitmapFont scoreText;
+	private BitmapFont lifeText;
 	private int INIT_FOOD = 2;
+	private int LIFE = 3;
 
 	public GameScreen(ShabuGame shabugame){
 		this.shabuGame = shabugame;
@@ -29,7 +31,7 @@ public class GameScreen extends ScreenAdapter {
 		score = 0;
 		scoreText = new BitmapFont();
 		scoreText.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-
+		lifeText = new BitmapFont();
 	}
 	
 	public void render(float delta){
@@ -39,6 +41,8 @@ public class GameScreen extends ScreenAdapter {
 		batch.draw(shabuImg,0,0);
 		setScoreText();
 		scoreText.draw(batch, "" + score,100, 100);
+		setLifeText();
+		lifeText.draw(batch, "" + LIFE,100, 200);
 		drawFood(batch);
 		batch.end();
 	}
@@ -56,7 +60,9 @@ public class GameScreen extends ScreenAdapter {
 		releaseFood(delta);
 		
 		if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
-			foodDisappear();
+			if(!foodDisappear()) {
+				LIFE--;
+			}
 		}
 	}
 		
@@ -71,7 +77,7 @@ public class GameScreen extends ScreenAdapter {
 		}
 	}
 	
-	public void foodDisappear() {
+	public boolean foodDisappear() {
 		int pointerX = Gdx.input.getX();
 		int pointerY = Gdx.input.getY();
 		for(int i=0; i < foods.size(); i++)
@@ -89,12 +95,20 @@ public class GameScreen extends ScreenAdapter {
 				foods.remove(foods.get(i));
 				score++;
 				System.out.println("score " + score);
+				return true;
 			}
-		}	
+		}
+		return false;
 	}
 
 	public void setScoreText() {
+		
 		scoreText.getData().setScale(3, 3);
+	}
+	
+	public void setLifeText() {
+		lifeText.setColor(Color.RED);
+		lifeText.getData().setScale(3, 3);
 	}
 	
 	private void initFood(){
