@@ -23,6 +23,7 @@ public class GameScreen extends ScreenAdapter {
 	private BitmapFont lifeText;
 	private int INIT_FOOD = 2;
 	private int LIFE = 3;
+	private float LAST_DISAPPEAR = 0;
 
 	public GameScreen(ShabuGame shabugame){
 		this.shabuGame = shabugame;
@@ -58,12 +59,15 @@ public class GameScreen extends ScreenAdapter {
 	public void update(float delta) 
 	{
 		releaseFood(delta);
-		
-		if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+		LAST_DISAPPEAR += delta;
+
+		if(Gdx.input.isButtonPressed(Input.Buttons.LEFT) && LAST_DISAPPEAR >=0.1){
 			if(!foodDisappear()) {
 				LIFE--;
 			}
+			LAST_DISAPPEAR=0;
 		}
+		
 	}
 		
 	public void releaseFood(float delta){
@@ -80,7 +84,7 @@ public class GameScreen extends ScreenAdapter {
 	public boolean foodDisappear() {
 		int pointerX = Gdx.input.getX();
 		int pointerY = Gdx.input.getY();
-		for(int i=0; i < foods.size(); i++)
+		for(int i=foods.size()-1; i >= 0; i--)
 		{
 			Food food = foods.get(i);
 			
