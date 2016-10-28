@@ -20,10 +20,12 @@ public class GameScreen extends ScreenAdapter {
 	private float HOWLONGLASTFOOD;
 	private int score;
 	private BitmapFont scoreText;
+	private int INIT_FOOD = 2;
 
 	public GameScreen(ShabuGame shabugame){
 		this.shabuGame = shabugame;
 		shabuImg = new Texture("background.png");
+		initFood();
 		score = 0;
 		scoreText = new BitmapFont();
 		scoreText.setColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -93,6 +95,13 @@ public class GameScreen extends ScreenAdapter {
 
 	public void setScoreText() {
 		scoreText.getData().setScale(3, 3);
+	}
+	
+	private void initFood(){
+		for(int i=0; i<INIT_FOOD; i++)
+		{
+			foods.add(new Food("cucumber"));
+		}
 	}
 	
 }
