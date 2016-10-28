@@ -11,12 +11,16 @@ public class Food {
 	private Vector2 position;
 	private Texture foodImg;
 	private SpriteBatch batch;
+	private float bornTime;
+	private float DURATION = 5;
 
 	
-	public Food(String imagefile)
+	public Food(String imagefile, float bornTime)
 	{
 		foodImg = new Texture(imagefile+".png");
 		generatePosition();
+		this.bornTime = bornTime;
+		System.out.println(bornTime);
 //		System.out.println("x "+ position.x + " y "+ (720-position.y));
 	}
 	
@@ -55,6 +59,14 @@ public class Food {
 	
 	public float getY(){
 		return position.y;
+	}
+	
+	public float getBornTime() {
+		return bornTime;
+	}
+	
+	public float getDuration() {
+		return DURATION;
 	}
 	
 }

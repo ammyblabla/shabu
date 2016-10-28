@@ -58,6 +58,7 @@ public class GameScreen extends ScreenAdapter {
 	
 	public void update(float delta) 
 	{
+		foodDisappearDependDuration();
 		releaseFood(delta);
 		LAST_DISAPPEAR += delta;
 
@@ -72,11 +73,9 @@ public class GameScreen extends ScreenAdapter {
 		
 	public void releaseFood(float delta){
 		HOWLONGLASTFOOD +=delta;
-		//จะปล่อยเนื้อทุกๆ 5 วิ
 		if(HOWLONGLASTFOOD>=DELAY)
 		{
-			//release new food 
-			foods.add(new Food("pork1raw"));
+			foods.add(new Food("pork1raw",getTime()));
 			HOWLONGLASTFOOD = 0; 
 		}
 	}
@@ -118,8 +117,22 @@ public class GameScreen extends ScreenAdapter {
 	private void initFood(){
 		for(int i=0; i<INIT_FOOD; i++)
 		{
-			foods.add(new Food("cucumber"));
+			Food newFood = new Food("cucumber",getTime());
+			foods.add(newFood);
 		}
+	}
+	
+	private void foodDisappearDependDuration() {
+		for (int i=0; i<foods.size(); i++) {
+			Food food = foods.get(i);
+			if(getTime()-food.getBornTime()>=food.getDuration()){
+				foods.remove(foods.get(i));
+			}
+		}
+	}
+	
+	private float getTime(){
+		return System.currentTimeMillis()/1000;
 	}
 	
 }
