@@ -11,11 +11,11 @@ public class Food {
 	private Vector2 position;
 	private Texture foodImg;
 	private SpriteBatch batch;
-	private float bornTime;
-	private float DURATION = 5;
+	private long bornTime; //millisecond
+	private long DURATION = 5000;
 
 	
-	public Food(String imagefile, float bornTime)
+	public Food(String imagefile, long bornTime)
 	{
 		foodImg = new Texture(imagefile+".png");
 		generatePosition();
@@ -61,11 +61,11 @@ public class Food {
 		return position.y;
 	}
 	
-	public float getBornTime() {
+	public long getBornTime() {
 		return bornTime;
 	}
 	
-	public float getDuration() {
+	public long getDuration() {
 		return DURATION;
 	}
 	

@@ -97,7 +97,7 @@ public class GameScreen extends ScreenAdapter {
 			{
 				foods.remove(foods.get(i));
 				score++;
-				System.out.println("score " + score);
+//				System.out.println("score " + score);
 				return true;
 			}
 		}
@@ -131,8 +131,8 @@ public class GameScreen extends ScreenAdapter {
 		}
 	}
 	
-	private float getTime(){
-		return System.currentTimeMillis()/1000;
+	private long getTime(){
+		return System.currentTimeMillis();
 	}
 	
 }
