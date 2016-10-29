@@ -20,15 +20,15 @@ public class Food {
 		foodImg = new Texture(imagefile+".png");
 		generatePosition();
 		this.bornTime = bornTime;
-		System.out.println(bornTime);
+//		System.out.println(bornTime);
 //		System.out.println("x "+ position.x + " y "+ (720-position.y));
 	}
 	
 	private void generatePosition()
 	{
 		Random rand = new Random();
-		int x = rand.nextInt(750) + 250;
-		int y = rand.nextInt(250) + 150;
+		int x = rand.nextInt(175) + 100;
+		int y = rand.nextInt(250-100) + 200;
 		position = new Vector2(x,y);
 	}
 	
