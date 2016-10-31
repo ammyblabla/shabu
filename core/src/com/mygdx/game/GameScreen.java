@@ -16,15 +16,15 @@ public class GameScreen extends ScreenAdapter {
 	private ShabuGame shabuGame;
 	private Texture shabuImg;
 	private List<Food> foods = new ArrayList<Food>();
-	private float DELAY = 0.5f;
+	private final float DELAY = 0.5f;
 	private float HOWLONGLASTFOOD;
 	private int score;
 	private BitmapFont scoreText;
 	private BitmapFont lifeText;
-	private int INIT_FOOD = 2;
+	private final int INIT_FOOD = 2;
 	private int LIFE = 3;
 	private float LAST_DISAPPEAR = 0;
-	private int SCALE_TEXT = 2;
+	private final int SCALE_TEXT = 2;
 
 	public GameScreen(ShabuGame shabugame){
 		this.shabuGame = shabugame;
@@ -76,7 +76,7 @@ public class GameScreen extends ScreenAdapter {
 		HOWLONGLASTFOOD +=delta;
 		if(HOWLONGLASTFOOD>=DELAY)
 		{
-			foods.add(new Food("meatball_pork",getTime()));
+			foods.add(new Food("ham_cheese",getTime()));
 			HOWLONGLASTFOOD = 0; 
 		}
 	}

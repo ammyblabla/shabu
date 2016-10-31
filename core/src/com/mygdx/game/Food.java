@@ -27,9 +27,13 @@ public class Food {
 	private void generatePosition()
 	{
 		Random rand = new Random();
-		int x = rand.nextInt(600-384) + 384;
-		int y = rand.nextInt(350-75) + 75;
-		position = new Vector2(x,y);
+		float x = rand.nextInt(270+1) + 384;
+//		float y = rand.nextInt(270+1) + 101;
+//		float x = rand.nextInt(1) + 0;
+		float power = rand.nextInt(2);
+		double y = Math.pow(-1, power)*Math.sqrt(Math.abs(Math.pow(x-519,2) - Math.pow(135,2)))+236; 
+		position = new Vector2(x,(float) y);
+		System.out.println("x "+x+" y "+y);
 	}
 	
 	public Vector2 getPosition()
