@@ -10,14 +10,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class ShabuGame extends Game {
 	public SpriteBatch batch;
-	public int HEIGHT;
-	public int WIDTH;
+	public final int HEIGHT;
+	public final int WIDTH;
+	private Texture shabuImg;
 	
 //	@Override
 	
 	public ShabuGame() {
-		HEIGHT = 538;
-		WIDTH = 421;
+		HEIGHT = 540;
+		WIDTH = 960;
 	}
 	
 	

@@ -28,7 +28,7 @@ public class GameScreen extends ScreenAdapter {
 
 	public GameScreen(ShabuGame shabugame){
 		this.shabuGame = shabugame;
-		shabuImg = new Texture("background2.png");
+		shabuImg = new Texture("background3.png");
 		initFood();
 		score = 0;
 		scoreText = new BitmapFont();

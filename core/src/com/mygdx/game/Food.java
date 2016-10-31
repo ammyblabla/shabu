@@ -27,8 +27,8 @@ public class Food {
 	private void generatePosition()
 	{
 		Random rand = new Random();
-		int x = rand.nextInt(175) + 100;
-		int y = rand.nextInt(250-100) + 200;
+		int x = rand.nextInt(600-384) + 384;
+		int y = rand.nextInt(350-75) + 75;
 		position = new Vector2(x,y);
 	}
 	
