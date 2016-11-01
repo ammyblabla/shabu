@@ -13,7 +13,9 @@ public class Food {
 	private SpriteBatch batch;
 	private long bornTime; //millisecond
 	private long DURATION = 5000;
-
+	private float radius;
+	private float originX;
+	private float originY;
 	
 	public Food(String imagefile, long bornTime)
 	{
@@ -26,14 +28,17 @@ public class Food {
 	
 	private void generatePosition()
 	{
+//		calculateCircleEquation(float xStart, float xEnd, float yStart, float yEnd);
+		calculateCircleEquation(384,654,371,101);
 		Random rand = new Random();
-		float x = rand.nextInt(270+1) + 384;
-//		float y = rand.nextInt(270+1) + 101;
+		float x = rand.nextInt(2*(int)radius+1) + originX - radius;
+//		float y = rand.nextInt(radius+1) + 101;
 //		float x = rand.nextInt(1) + 0;
 		float power = rand.nextInt(2);
-		double y = Math.pow(-1, power)*Math.sqrt(Math.abs(Math.pow(x-519,2) - Math.pow(135,2)))+236; 
+		double y = Math.pow(-1, power)*Math.sqrt(Math.abs(Math.pow(x-originX,2) - Math.pow(radius,2)))+originY; 
 		position = new Vector2(x,(float) y);
-		System.out.println("x "+x+" y "+y);
+//		System.out.println((int)radius+1+384);
+//		System.out.println("x "+x+" y "+y);
 	}
 	
 	public Vector2 getPosition()
@@ -71,6 +76,12 @@ public class Food {
 	
 	public long getDuration() {
 		return DURATION;
+	}
+	
+	private void calculateCircleEquation(float xStart, float xEnd, float yStart, float yEnd){
+		radius = Math.abs(xEnd-xStart)/2;
+		originX = Math.min(xStart, xEnd) + radius - foodImg.getWidth()/2;
+		originY = Math.min(yStart, yEnd) + radius - foodImg.getHeight()/2;
 	}
 	
 }

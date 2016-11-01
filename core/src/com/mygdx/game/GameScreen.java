@@ -16,7 +16,7 @@ public class GameScreen extends ScreenAdapter {
 	private ShabuGame shabuGame;
 	private Texture shabuImg;
 	private List<Food> foods = new ArrayList<Food>();
-	private final float DELAY = 0.5f;
+	private final float DELAY = 0.1f;
 	private float HOWLONGLASTFOOD;
 	private int score;
 	private BitmapFont scoreText;
@@ -59,7 +59,7 @@ public class GameScreen extends ScreenAdapter {
 	
 	public void update(float delta) 
 	{
-		foodDisappearDependDuration();
+//		foodDisappearDependDuration();
 		releaseFood(delta);
 		LAST_DISAPPEAR += delta;
 
@@ -76,7 +76,7 @@ public class GameScreen extends ScreenAdapter {
 		HOWLONGLASTFOOD +=delta;
 		if(HOWLONGLASTFOOD>=DELAY)
 		{
-			foods.add(new Food("ham_cheese",getTime()));
+			foods.add(new Food("corn",getTime()));
 			HOWLONGLASTFOOD = 0; 
 		}
 	}
