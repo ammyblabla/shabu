@@ -39,6 +39,7 @@ public class Food {
 		position = new Vector2(x,(float) y);
 //		System.out.println((int)radius+1+384);
 //		System.out.println("x "+x+" y "+y);
+		System.out.println(originX);
 	}
 	
 	public Vector2 getPosition()

@@ -16,7 +16,7 @@ public class GameScreen extends ScreenAdapter {
 	private ShabuGame shabuGame;
 	private Texture shabuImg;
 	private List<Food> foods = new ArrayList<Food>();
-	private final float DELAY = 0.1f;
+	private final float DELAY = 0.5f;
 	private float HOWLONGLASTFOOD;
 	private int score;
 	private BitmapFont scoreText;
@@ -25,11 +25,13 @@ public class GameScreen extends ScreenAdapter {
 	private int LIFE = 3;
 	private float LAST_DISAPPEAR = 0;
 	private final int SCALE_TEXT = 2;
+	private Chopstick chopstick;
 
 	public GameScreen(ShabuGame shabugame){
 		this.shabuGame = shabugame;
 		shabuImg = new Texture("background3.png");
 		initFood();
+		chopstick = new Chopstick();
 		score = 0;
 		scoreText = new BitmapFont();
 		scoreText.setColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -41,6 +43,9 @@ public class GameScreen extends ScreenAdapter {
 		SpriteBatch batch = shabuGame.batch;
 		batch.begin();
 		batch.draw(shabuImg,0,0);
+//		batch.draw(chopstick.getChopstickImg(),chopstick.getX(),chopstick.getY());
+//		batch.draw(chopstick.getChopstickImg(),chopstick.getPosition().x,chopstick.getPosition().y);
+		drawChopstick(batch);
 		setScoreText();
 		scoreText.draw(batch, "score: " + score,50, 100);
 		setLifeText();
@@ -59,7 +64,7 @@ public class GameScreen extends ScreenAdapter {
 	
 	public void update(float delta) 
 	{
-//		foodDisappearDependDuration();
+		foodDisappearDependDuration();
 		releaseFood(delta);
 		LAST_DISAPPEAR += delta;
 
@@ -134,6 +139,11 @@ public class GameScreen extends ScreenAdapter {
 	
 	private long getTime(){
 		return System.currentTimeMillis();
+	}
+	
+	private void drawChopstick(SpriteBatch batch) {
+		Vector2 chopstickPosition = chopstick.getPosition();
+		batch.draw(chopstick.getChopstickImg(),chopstickPosition.x,chopstickPosition.y);
 	}
 	
 }
