@@ -6,9 +6,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
 public class Chopstick {
-	private Texture chopstickImg;
-	private Vector2 position;
-	private float originX, originY, radius;
+	private static Texture chopstickImg;
+	private static Vector2 position;
+	private static float originX, originY, radius, angle;
 	
 	public Chopstick() {
 		chopstickImg = new Texture("chopstick04.png");
@@ -16,6 +16,7 @@ public class Chopstick {
 //		position = new Vector2(510,482);
 //		private void calculateCircleEquation(float xStart, float xEnd, float yStart, float yEnd)
 		calculateCircleEquation(284,736,58,510);
+		angle=0;
 	}
 	
 	public float getX() {
@@ -35,7 +36,11 @@ public class Chopstick {
 	}
 	
 	public void moveAroundPot() {
-		
+		angle += 0.30;
+		float x = (float)(originX + Math.cos(angle*Math.PI/180)*radius);
+		float y  = (float)(originY + Math.sin(angle*Math.PI/180)*radius);
+		setPos(x, y);
+		System.out.println(position.x+" "+position.y);
 	}
 	
 	private void calculateCircleEquation(float xStart, float xEnd, float yStart, float yEnd){
@@ -50,5 +55,14 @@ public class Chopstick {
 		float power = rand.nextInt(2);
 		double y = Math.pow(-1, power)*Math.sqrt(Math.abs(Math.pow(x-originX,2) - Math.pow(radius,2)))+originY; 
 		position = new Vector2(x,(float) y);
+	}
+	
+	private float setY(float x,int power) {
+		return (float) (Math.pow(-1, power)*Math.sqrt(Math.abs(Math.pow(x-originX,2) - Math.pow(radius,2)))+originY); 
+	}
+	
+	private void setPos(float x, float y) {
+		Vector2 tmp = new Vector2(x,y);
+		this.position = tmp.cpy();
 	}
 }

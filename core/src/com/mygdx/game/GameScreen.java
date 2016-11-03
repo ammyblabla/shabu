@@ -67,7 +67,8 @@ public class GameScreen extends ScreenAdapter {
 		foodDisappearDependDuration();
 		releaseFood(delta);
 		LAST_DISAPPEAR += delta;
-
+		chopstick.moveAroundPot();
+		
 		if(Gdx.input.isButtonPressed(Input.Buttons.LEFT) && LAST_DISAPPEAR >=0.1){
 			if(!foodDisappear()) {
 				LIFE--;
