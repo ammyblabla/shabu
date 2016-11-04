@@ -8,7 +8,9 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 
@@ -26,6 +28,7 @@ public class GameScreen extends ScreenAdapter {
 	private float LAST_DISAPPEAR = 0;
 	private final int SCALE_TEXT = 2;
 	private Chopstick chopstick;
+	private float distanceBetween2food;
 
 	public GameScreen(ShabuGame shabugame){
 		this.shabuGame = shabugame;
@@ -67,9 +70,9 @@ public class GameScreen extends ScreenAdapter {
 		foodDisappearDependDuration();
 		releaseFood(delta);
 		LAST_DISAPPEAR += delta;
-		chopstick.moveAroundPot();
+//		chopstick.moveAroundPot();
 		
-		if(Gdx.input.isButtonPressed(Input.Buttons.LEFT) && LAST_DISAPPEAR >=0.1){
+		if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && LAST_DISAPPEAR >=0.1){
 			if(!foodDisappear()) {
 				LIFE--;
 			}
@@ -79,10 +82,14 @@ public class GameScreen extends ScreenAdapter {
 	}
 		
 	public void releaseFood(float delta){
-		HOWLONGLASTFOOD +=delta;
-		if(HOWLONGLASTFOOD>=DELAY)
+		HOWLONGLASTFOOD += delta;
+		if(HOWLONGLASTFOOD >= DELAY)
 		{
-			foods.add(new Food("corn",getTime()));
+			Food food = new Food("ham_cheese",getTime());
+//			while(!checkNewFoodPosition(foods,food)){
+//				food.regeneratePosition();
+//			}
+			foods.add(food);
 			HOWLONGLASTFOOD = 0; 
 		}
 	}
@@ -90,7 +97,7 @@ public class GameScreen extends ScreenAdapter {
 	public boolean foodDisappear() {
 		int pointerX = Gdx.input.getX();
 		int pointerY = Gdx.input.getY();
-		for(int i=foods.size()-1; i >= 0; i--)
+		for (int i=foods.size()-1; i >= 0; i--)
 		{
 			Food food = foods.get(i);
 			
@@ -100,7 +107,7 @@ public class GameScreen extends ScreenAdapter {
 			float deltaX = pointerX-foodX;
 			float deltaY = (-1)*(pointerY-foodY);
 			
-			if(deltaX >= 0 && deltaX <= food.getFoodImg().getWidth() && deltaY >= 0 && deltaY <= food.getFoodImg().getHeight())
+			if (deltaX >= 0 && deltaX <= food.getFoodImg().getWidth() && deltaY >= 0 && deltaY <= food.getFoodImg().getHeight())
 			{
 				foods.remove(foods.get(i));
 				score++;
@@ -112,7 +119,6 @@ public class GameScreen extends ScreenAdapter {
 	}
 
 	public void setScoreText() {
-		
 		scoreText.getData().setScale(SCALE_TEXT, SCALE_TEXT);
 	}
 	
@@ -122,8 +128,7 @@ public class GameScreen extends ScreenAdapter {
 	}
 	
 	private void initFood(){
-		for(int i=0; i<INIT_FOOD; i++)
-		{
+		for (int i=0; i<INIT_FOOD; i++) {
 			Food newFood = new Food("meatball_pork",getTime());
 			foods.add(newFood);
 		}
@@ -132,19 +137,46 @@ public class GameScreen extends ScreenAdapter {
 	private void foodDisappearDependDuration() {
 		for (int i=0; i<foods.size(); i++) {
 			Food food = foods.get(i);
-			if(getTime()-food.getBornTime()>=food.getDuration()){
+			if (getTime()-food.getBornTime()>=food.getDuration()){
 				foods.remove(foods.get(i));
 			}
 		}
 	}
 	
-	private long getTime(){
+	private long getTime() {
 		return System.currentTimeMillis();
 	}
 	
 	private void drawChopstick(SpriteBatch batch) {
+	//	draw(TextureRegion region, float x, float y, float originX, float originY, float width, float height, float scaleX, float scaleY, float rotation)
 		Vector2 chopstickPosition = chopstick.getPosition();
-		batch.draw(chopstick.getChopstickImg(),chopstickPosition.x,chopstickPosition.y);
+		Texture chopstickImg = chopstick.getChopstickImg();
+		float width = chopstickImg.getWidth();
+		float height = chopstickImg.getWidth();
+		float[] origin = chopstick.getOrigin();
+		float[] middleChopstick = chopstick.getMiddle();
+		TextureRegion chopstickTextureRegion = new TextureRegion(chopstick.getChopstickImg());
+//		draw(Texture texture, float x, float y, float originX, float originY, float width, float height, float scaleX, float scaleY, float rotation, int srcX, int srcY, int srcWidth, int srcHeight, boolean flipX, boolean flipY)
+		batch.draw(chopstick.getChopstickImg(),chopstickPosition.x,chopstickPosition.y,middleChopstick[0],middleChopstick[1],1,1,1,1,false,false);
+//		batch.draw(chopstickTextureRegion,chopstickPosition.x,chopstickPosition.y);
+//		batch.draw(chopstick.getChopstickImg(),chopstickPosition.x,chopstickPosition.y);
+//	    batch.draw(chopstickTextureRegion, chopstickPosition.x, chopstickPosition.y,origin[0] ,origin[1] ,width , height, 1, 1, chopstick.getAngle(), true);
+	}
+	
+	private boolean checkNewFoodPosition(List<Food> foods, Food foodInput) {
+		float xFoodInput = foodInput.getX();
+		float yFoodInput = foodInput.getY();
+		
+		for (Food food: foods) {
+			float xFoodLoop = food.getX();
+			float yFoodLoop = food.getY();
+			
+			if(Math.abs(xFoodInput-xFoodLoop)>=20 || Math.abs(yFoodInput - yFoodLoop)>=20) {
+				return false;
+			}
+		}
+		
+		return true;
 	}
 	
 }
