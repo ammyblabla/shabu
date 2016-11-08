@@ -19,12 +19,8 @@ public class GameScreen extends ScreenAdapter {
 	private Texture shabuImg;
 	private List<Food> foods = new ArrayList<Food>();
 	private FoodList foodList;
-//	private final float DELAY = 0.5f;
-//	private float HOWLONGLASTFOOD;
-//	public int score;
 	private BitmapFont scoreText;
 	private BitmapFont lifeText;
-//	private final int INIT_FOOD = 2;
 	private int LIFE = 3;
 	private float LAST_DISAPPEAR = 0;
 	private final int SCALE_TEXT = 2;
@@ -108,12 +104,13 @@ public class GameScreen extends ScreenAdapter {
 		float height = chopstickImg.getWidth();
 		float[] origin = chopstick.getOrigin();
 		float[] middleChopstick = chopstick.getMiddle();
-		TextureRegion chopstickTextureRegion = new TextureRegion(chopstick.getChopstickImg());
+//		TextureRegion chopstickTextureRegion = new TextureRegion(chopstick.getChopstickImg());
 //		draw(Texture texture, float x, float y, float originX, float originY, float width, float height, float scaleX, float scaleY, float rotation, int srcX, int srcY, int srcWidth, int srcHeight, boolean flipX, boolean flipY)
-		batch.draw(chopstick.getChopstickImg(),chopstickPosition.x,chopstickPosition.y,middleChopstick[0],middleChopstick[1],1,1,1,1,false,false);
+//		batch.draw(chopstick.getChopstickImg(),chopstickPosition.x,chopstickPosition.y,middleChopstick[0],middleChopstick[1],1,1,1,1,false,false);
 //		batch.draw(chopstickTextureRegion,chopstickPosition.x,chopstickPosition.y);
-//		batch.draw(chopstick.getChopstickImg(),chopstickPosition.x,chopstickPosition.y);
+		batch.draw(chopstick.getChopstickImg(),chopstickPosition.x,chopstickPosition.y);
 //	    batch.draw(chopstickTextureRegion, chopstickPosition.x, chopstickPosition.y,origin[0] ,origin[1] ,width , height, 1, 1, chopstick.getAngle(), true);
+	
 	}
 	
 }

@@ -39,7 +39,6 @@ public class FoodList {
 //				System.out.println("eiei");
 				foods.remove(foods.get(i));
 				score++;
-//				System.out.println("score " + score);
 				return true;
 			}
 		}
