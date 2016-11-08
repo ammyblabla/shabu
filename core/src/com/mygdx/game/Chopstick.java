@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Chopstick {
 	private static Texture chopstickImg;
-	private static Vector2 position;
+	private Vector2 position;
 	private static float originX, originY, radius, angle;
 	private static float speed = 1;
 
@@ -43,7 +43,7 @@ public class Chopstick {
 		float y  = (float)(originY + Math.sin(angle*Math.PI/180)*radius);
 		setPos(x, y);
 //		position.rotate(angle);
-		System.out.println(position.x+" "+position.y);
+//		System.out.println(position.x+" "+position.y);
 	}
 	
 	private void calculateCircleEquation(float xStart, float xEnd, float yStart, float yEnd) {

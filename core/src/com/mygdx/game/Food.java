@@ -35,7 +35,7 @@ public class Food {
 		double y = Math.pow(-1, power)*Math.sqrt(Math.abs(Math.pow(x-originX,2) - Math.pow(radius,2)))+originY; 
 		position = new Vector2(x,(float) y);
 //		System.out.println("x "+x+" y "+y);
-		System.out.println(originX);
+//		System.out.println(originX);
 	}
 	
 	public void regeneratePosition() {
