@@ -27,7 +27,7 @@ public class FoodList {
 			Food food = foods.get(i);
 			
 			float foodX = food.getX();
-			float foodY = 540-food.getY();
+			float foodY = world.getScreenHeight()-food.getY();
 			
 			float deltaX = pointerX-foodX;
 			float deltaY = (-1)*(pointerY-foodY);

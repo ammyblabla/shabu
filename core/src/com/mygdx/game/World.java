@@ -25,9 +25,7 @@ public class World {
 	}
 	
 	public void increaseScore() {
-//		System.out.println(score+ "before ");
 		score++;
-//		System.out.println(score+ "after ");
 	}
 	
 	public void decreaseLife() {
@@ -55,22 +53,22 @@ public class World {
 		foodList.releaseFood(delta);
 		LAST_DISAPPEAR += delta;
 		chopstick.moveAroundPot();
-		plusDisappear(delta);
 	}
 
 	public void setDisappear(float set) {
-		LAST_DISAPPEAR=set;
-	}
-	
-	public void plusDisappear(float plus) {
-		LAST_DISAPPEAR+=plus;
+		LAST_DISAPPEAR = set;
 	}
 	
 	public float getLAST_DISAPPEAR(){
 		return LAST_DISAPPEAR;
 	}
 	
+	public float getScreenWidth () {
+		return shabuGame.WIDTH;
+	}
 	
-	
+	public float getScreenHeight () {
+		return shabuGame.HEIGHT;
+	}
 }
 
