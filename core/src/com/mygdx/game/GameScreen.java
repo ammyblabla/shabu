@@ -8,6 +8,7 @@ public class GameScreen extends ScreenAdapter {
 	private ShabuGame shabuGame;
 	private World world;
 	private WorldRenderer worldRenderer;
+	private float clickDelay = 0.5f;
 	
 	public GameScreen(ShabuGame shabugame){
 		this.shabuGame = shabugame;
@@ -26,7 +27,7 @@ public class GameScreen extends ScreenAdapter {
 	}
 
 	public void disappearByClick() {
-		if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && world.getLAST_DISAPPEAR() >= 0.3) {
+		if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && world.getLAST_DISAPPEAR() >= clickDelay) {
 			int pointerX = Gdx.input.getX();
 			int pointerY = Gdx.input.getY();
 			if(!world.getFoodList().foodDisappear(pointerX, pointerY)) {

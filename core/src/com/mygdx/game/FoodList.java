@@ -10,7 +10,7 @@ public class FoodList {
 	public World world;
 	private final int INIT_FOOD = 2;
 	private float HOWLONGLASTFOOD;
-	private final float DELAY = 0.5f;
+	private final float DELAY = 1;
 
 //	private float distanceBetween2food;
 
