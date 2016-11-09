@@ -7,17 +7,17 @@ import com.badlogic.gdx.Gdx;
 
 public class FoodList {
 	private List<Food> foods = new ArrayList<Food>();
-	World world;
+	public World world;
 	private final int INIT_FOOD = 2;
 	private float HOWLONGLASTFOOD;
 	private final float DELAY = 0.5f;
-	public int score = 0;
+
 //	private float distanceBetween2food;
 
-	
-	public FoodList() {
+	public FoodList(World world) {
+		this.world = world;
 		initFood();
-//		this.world = world;
+		System.out.println("foodList");
 	}
 	
 	public boolean foodDisappear(int pointerX, int pointerY) {
@@ -36,9 +36,8 @@ public class FoodList {
 			
 			if (deltaX >= 0 && deltaX <= food.getFoodImg().getWidth() && deltaY >= 0 && deltaY <= food.getFoodImg().getHeight())
 			{
-//				System.out.println("eiei");
+				world.increaseScore();
 				foods.remove(foods.get(i));
-				score++;
 				return true;
 			}
 		}

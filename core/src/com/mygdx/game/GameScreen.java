@@ -17,24 +17,24 @@ import com.badlogic.gdx.math.Vector2;
 public class GameScreen extends ScreenAdapter {
 	private ShabuGame shabuGame;
 	private Texture shabuImg;
-	private List<Food> foods = new ArrayList<Food>();
-	private FoodList foodList;
+//	private List<Food> foods = new ArrayList<Food>();
+//	private FoodList foodList;
 	private BitmapFont scoreText;
 	private BitmapFont lifeText;
-	private int LIFE = 3;
-	private float LAST_DISAPPEAR = 0;
+//	private float LAST_DISAPPEAR = 0;
 	private final int SCALE_TEXT = 2;
 	private Chopstick chopstick;
+	private World world;
 //	World world;
 
 	public GameScreen(ShabuGame shabugame){
 		this.shabuGame = shabugame;
 		shabuImg = new Texture("background3.png");
-//		world = new World(shabugame);
-//		world.getFoodList().initFood();
-		foodList = new FoodList();
-		foods = foodList.getList();
-		chopstick = new Chopstick();
+		world = new World(shabugame);
+//		foodList = new FoodList(world);
+//		foods = foodList.getList();
+//		chopstick = new Chopstick();
+		chopstick = world.getChopstick();
 //		score = 0;
 		scoreText = new BitmapFont();
 		scoreText.setColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -50,15 +50,16 @@ public class GameScreen extends ScreenAdapter {
 //		batch.draw(chopstick.getChopstickImg(),chopstick.getPosition().x,chopstick.getPosition().y);
 		drawChopstick(batch);
 		setScoreText();
-		scoreText.draw(batch, "score: " + foodList.score,50, 100);
+		scoreText.draw(batch, "score: " + world.getScore(),50, 100);
 		setLifeText();
-		lifeText.draw(batch, "life: " + LIFE,50, 50);
+		lifeText.draw(batch, "life: " + world.getLife(),50, 50);
 		drawFood(batch);
 		batch.end();
 	}
 	
 	public void drawFood(SpriteBatch batch) //create food once again
 	{
+		List<Food> foods = world.getFoodList().getList();
 		for (Food food : foods) {
 			Vector2 foodPosition = food.getPosition();
 			batch.draw(food.getFoodImg(),foodPosition.x,foodPosition.y);
@@ -67,18 +68,19 @@ public class GameScreen extends ScreenAdapter {
 	
 	public void update(float delta) 
 	{
-		foodList.foodDisappearDependDuration();
-		foodList.releaseFood(delta);
-		LAST_DISAPPEAR += delta;
-		chopstick.moveAroundPot();
-		
-		if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && LAST_DISAPPEAR >=0.3){
+//		world.getFoodList().foodDisappearDependDuration();
+//		world.getFoodList().releaseFood(delta);
+//		LAST_DISAPPEAR += delta;
+//		chopstick.moveAroundPot();
+//		world.plusDisappear(delta);
+		world.update(delta);	
+		if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && world.getLAST_DISAPPEAR() >=0.3) {
 			int pointerX = Gdx.input.getX();
 			int pointerY = Gdx.input.getY();
-			if(!foodList.foodDisappear(pointerX, pointerY)) {
-				LIFE--;
+			if(!world.getFoodList().foodDisappear(pointerX, pointerY)) {
+				world.decreaseLife();
 			}
-			LAST_DISAPPEAR=0;
+			world.setDisappear(0);
 		}
 		
 	}
