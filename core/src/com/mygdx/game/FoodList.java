@@ -11,6 +11,7 @@ public class FoodList {
 	private final int INIT_FOOD = 2;
 	private float HOWLONGLASTFOOD;
 	private final float DELAY = 1;
+	private String[] listOfFood;
 
 //	private float distanceBetween2food;
 

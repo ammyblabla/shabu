@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 public class WorldRenderer {
@@ -65,17 +66,27 @@ public class WorldRenderer {
 		Vector2 chopstickPosition = world.getChopstick().getPosition();
 		Texture chopstickImg = world.getChopstick().getChopstickImg();
 		
-//		float width = chopstickImg.getWidth();
-//		float height = chopstickImg.getWidth();
-//		float[] origin = chopstick.getOrigin();
-//		float[] middleChopstick = chopstick.getMiddle();
+		float width = chopstickImg.getWidth();
+		float height = chopstickImg.getHeight();
+		float[] origin = world.getChopstick().getOrigin();
+		float[] middleChopstick = world.getChopstick().getMiddle();
+		float scaleX = width/height;
 //		
-//		TextureRegion chopstickTextureRegion = new TextureRegion(chopstick.getChopstickImg());
+//		TextureRegion chopstickTextureRegion = new TextureRegion(world.getChopstick().getChopstickImg());
 //		draw(Texture texture, float x, float y, float originX, float originY, float width, float height, float scaleX, float scaleY, float rotation, int srcX, int srcY, int srcWidth, int srcHeight, boolean flipX, boolean flipY)
-//		batch.draw(chopstick.getChopstickImg(),chopstickPosition.x,chopstickPosition.y,middleChopstick[0],middleChopstick[1],1,1,1,1,false,false);
+//		batch.draw(world.getChopstick().getChopstickImg(),chopstickPosition.x,chopstickPosition.y,middleChopstick[0],middleChopstick[1],width,height,1,1,world.getChopstick().getAngle(),(int)origin[0],(int)origin[1],width,height,false,false);
 //		batch.draw(chopstickTextureRegion,chopstickPosition.x,chopstickPosition.y);
-		batch.draw(world.getChopstick().getChopstickImg(),chopstickPosition.x,chopstickPosition.y);
-//	    batch.draw(chopstickTextureRegion, chopstickPosition.x, chopstickPosition.y,origin[0] ,origin[1] ,width , height, 1, 1, chopstick.getAngle(), true);
+//		batch.draw(chopstickTextureRegion,chopstickPosition.x,chopstickPosition.y, width, height);
+//		batch.draw(world.getChopstick().getChopstickImg(),chopstickPosition.x,chopstickPosition.y);
+		
+		
+//		draw(TextureRegion region, float x, float y, float originX, float originY, float width, float height, float scaleX, float scaleY, float rotation)
+//		batch.draw(chopstickTextureRegion, chopstickPosition.x, chopstickPosition.y,origin[0] ,origin[1] ,width , height, 1, 2, world.getChopstick().getAngle());
+//		batch.draw(chopstickTextureRegion, chopstickPosition.x, chopstickPosition.y,middleChopstick[0] ,middleChopstick[1] ,width , height, 2, 1, world.getChopstick().getAngle());
+
+//		draw(Texture texture, float x, float y, int srcX, int srcY, int srcWidth, int srcHeight)
+		batch.draw(world.getChopstick().getChopstickImg(),chopstickPosition.x,chopstickPosition.y,origin[0] ,origin[1] ,width,height,1,1,world.getChopstick().getAngle()+90,1,1,(int)width,(int)height,false,false);
+	
 	
 	}
 	

@@ -39,10 +39,11 @@ public class Chopstick {
 	
 	public void moveAroundPot() {
 		angle += speed;
-		float x = (float)(originX + Math.cos(angle*Math.PI/180)*radius);
-		float y  = (float)(originY + Math.sin(angle*Math.PI/180)*radius);
+		float x = (float)(originX + Math.cos(angle*Math.PI/180)*radius) - radius ;
+		float y  = (float)(originY + Math.sin(angle*Math.PI/180)*radius) - radius;
 		setPos(x, y);
 //		position.rotate(angle);
+//		position.setAngle(60);
 //		System.out.println(position.x+" "+position.y);
 	}
 	
