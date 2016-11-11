@@ -13,7 +13,7 @@ public class Chopstick {
 
 	
 	public Chopstick() {
-		chopstickImg = new Texture("chopstick05.png");
+		chopstickImg = new Texture("chopstick06.png");
 //		randomChopstickPosition();
 		position = new Vector2(510,482);
 //		private void calculateCircleEquation(float xStart, float xEnd, float yStart, float yEnd)
@@ -50,8 +50,8 @@ public class Chopstick {
 	
 	private void calculateCircleEquation(float xStart, float xEnd, float yStart, float yEnd) {
 		radius = Math.abs(xEnd-xStart)/2;
-		originX = Math.min(xStart, xEnd) + radius ;
-		originY = Math.min(yStart, yEnd) + radius ;
+		originX = Math.min(xStart, xEnd) + radius;
+		originY = Math.min(yStart, yEnd) + radius;
 		System.out.println(radius*2);
 	}
 	

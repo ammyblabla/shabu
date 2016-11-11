@@ -83,10 +83,10 @@ public class WorldRenderer {
 		
 //		sprite.setPosition(chopstickPosition.x,chopstickPosition.y);
 //		System.out.println(chopstickPosition.x + " position " +chopstickPosition.y);
-		sprite.setPosition(origin[0] - 0.5f * width, origin[1] - 0.5f * height);
+//		sprite.setPosition(origin[0] - 0.5f * width, origin[1] - 0.5f * height);
 
 		sprite.setOrigin(middleChopstick[0],middleChopstick[1]);
-		sprite.setRotation(world.getChopstick().getAngle()+90+180);
+		sprite.setRotation(world.getChopstick().getAngle());
 		System.out.println(sprite.getOriginX() + " " + sprite.getOriginY());
 ////		sprite.setOriginCenter();
 //		sprite.setOrigin(origin[0],origin[1]);
