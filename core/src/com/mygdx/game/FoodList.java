@@ -3,8 +3,6 @@ package com.mygdx.game;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.badlogic.gdx.Gdx;
-
 public class FoodList {
 	private List<Food> foods = new ArrayList<Food>();
 	public World world;
@@ -36,8 +34,8 @@ public class FoodList {
 			float deltaX = pointerX-foodX;
 			float deltaY = (-1)*(pointerY-foodY);
 					
-			if (deltaX >= 0 && deltaX <= food.getFoodImg().getWidth() && deltaY >= 0 && deltaY <= food.getFoodImg().getHeight())
-			{
+			if (deltaX >= 0 && deltaX <= food.getFoodImg().getWidth() && 
+				deltaY >= 0 && deltaY <= food.getFoodImg().getHeight()) {
 				world.increaseScore();
 				foods.remove(foods.get(i));
 				return true;
@@ -46,7 +44,7 @@ public class FoodList {
 		return false;
 	}
 	
-	private void initFood(){
+	private void initFood() {
 		for (int i=0; i<INIT_FOOD; i++) {
 			Food newFood = new Food("meatball_pork",getTime());
 			foods.add(newFood);
@@ -56,7 +54,7 @@ public class FoodList {
 	public void foodDisappearDependDuration() {
 		for (int i=0; i<foods.size(); i++) {
 			Food food = foods.get(i);
-			if (getTime()-food.getBornTime()>=food.getDuration()){
+			if (getTime()-food.getBornTime()>=food.getDuration()) {
 				foods.remove(foods.get(i));
 			}
 		}
@@ -66,10 +64,9 @@ public class FoodList {
 		return System.currentTimeMillis();
 	}
 	
-	public void releaseFood(float delta){
+	public void releaseFood(float delta) {
 		HOWLONGLASTFOOD += delta;
-		if(HOWLONGLASTFOOD >= DELAY)
-		{
+		if(HOWLONGLASTFOOD >= DELAY) {
 			Food food = new Food("ham_cheese",getTime());
 			System.out.println(checkNewFoodPosition(food));
 //			while(!checkNewFoodPosition(food)) {
@@ -93,7 +90,9 @@ public class FoodList {
 			float xFoodLoop = food.getX();
 			float yFoodLoop = food.getY();
 			
-			if(Math.abs(xFoodInput-xFoodLoop) < food.getFoodImg().getWidth() || Math.abs(yFoodInput - yFoodLoop) < food.getFoodImg().getHeight()) {
+			if (Math.abs(xFoodInput-xFoodLoop) < food.getFoodImg().getWidth() || 
+				Math.abs(yFoodInput - yFoodLoop) < food.getFoodImg().getHeight()) {
+				
 				return false;
 			}
 		}

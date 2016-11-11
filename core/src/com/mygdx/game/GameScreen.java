@@ -10,13 +10,13 @@ public class GameScreen extends ScreenAdapter {
 	private WorldRenderer worldRenderer;
 	private float clickDelay = 0.5f;
 	
-	public GameScreen(ShabuGame shabugame){
+	public GameScreen(ShabuGame shabugame) {
 		this.shabuGame = shabugame;
 		world = new World(shabugame);
 		worldRenderer = new WorldRenderer(shabugame,world);
 	}
 	
-	public void render(float delta){
+	public void render(float delta) {
 		update(delta);
 		worldRenderer.render(delta);
 	}

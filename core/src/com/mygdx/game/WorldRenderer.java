@@ -27,7 +27,7 @@ public class WorldRenderer {
 		lifeText = new BitmapFont();
 	}
 	
-	public void render(float delta){
+	public void render(float delta) {
 		world.update(delta);
 		SpriteBatch batch = shabuGame.batch;
 		
@@ -39,8 +39,7 @@ public class WorldRenderer {
 		batch.end();
 	}
 	
-	public void drawFood(SpriteBatch batch) //create food once again
-	{
+	public void drawFood(SpriteBatch batch) {
 		List<Food> foods = world.getFoodList().getList();
 		for (Food food : foods) {
 			Vector2 foodPosition = food.getPosition();

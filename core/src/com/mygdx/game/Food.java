@@ -1,7 +1,5 @@
 package com.mygdx.game;
 
-
-import java.util.List;
 import java.util.Random;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -22,8 +20,6 @@ public class Food {
 		foodImg = new Texture(imagefile+".png");
 		generatePosition();
 		this.bornTime = bornTime;
-//		System.out.println(bornTime);
-//		System.out.println("x "+ position.x + " y "+ (720-position.y));
 	}
 	
 	private void generatePosition() {
@@ -32,18 +28,16 @@ public class Food {
 		Random rand = new Random();
 		float x = rand.nextInt(2*(int)radius+1) + originX - radius;
 		float power = rand.nextInt(2);
-		double y = Math.pow(-1, power)*Math.sqrt(Math.abs(Math.pow(x-originX,2) - Math.pow(radius,2)))+originY; 
+		double y = Math.pow(-1, power) * Math.sqrt(Math.abs(Math.pow(x-originX,2) - Math.pow(radius,2)))+originY; 
 		position = new Vector2(x,(float) y);
-//		System.out.println("x "+x+" y "+y);
-//		System.out.println(originX);
 	}
 	
 	public void regeneratePosition() {
 		Random rand = new Random();
-		float x = rand.nextInt(2*(int)radius+1) + originX - radius;
+		float x = rand.nextInt(2 * (int)radius+1) + originX - radius;
 		float power = rand.nextInt(2);
-		double y = Math.pow(-1, power)*Math.sqrt(Math.abs(Math.pow(x-originX,2) - Math.pow(radius,2)))+originY; 
-		setPos(x,(float)y);
+		double y = Math.pow(-1, power) * Math.sqrt(Math.abs(Math.pow(x-originX,2) - Math.pow(radius,2)))+originY; 
+		setPos(x, (float)y);
 	}
 	
 	public Vector2 getPosition() {
@@ -89,7 +83,5 @@ public class Food {
 	private void setPos(float x, float y) {
 		Vector2 tmp = new Vector2(x,y);
 		this.position = tmp.cpy();
-	}
-
-	
+	}	
 }

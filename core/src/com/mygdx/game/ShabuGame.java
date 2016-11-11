@@ -15,14 +15,12 @@ public class ShabuGame extends Game {
 		WIDTH = 960;
 	}
 	
-	
 	public void create () {
         batch = new SpriteBatch();
         sprite = new Sprite();
         GameScreen gameScreen = new GameScreen(this);
         setScreen(gameScreen);
 	}
-
 
 	public void render () {
 		super.render();
