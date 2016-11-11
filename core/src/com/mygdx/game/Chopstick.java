@@ -42,10 +42,6 @@ public class Chopstick {
 		float x = (float)(originX + Math.cos(angle*Math.PI/180)*radius);
 		float y  = (float)(originY + Math.sin(angle*Math.PI/180)*radius);
 		setPos(x, y);
-//		System.out.println(angle);
-//		position.rotate(90+angle);
-//		position.setAngle(90);
-//		System.out.println(position.x+" "+position.y);
 	}
 	
 	private void calculateCircleEquation(float xStart, float xEnd, float yStart, float yEnd) {
@@ -61,10 +57,6 @@ public class Chopstick {
 		float power = rand.nextInt(2);
 		double y = Math.pow(-1, power)*Math.sqrt(Math.abs(Math.pow(x-originX,2) - Math.pow(radius,2)))+originY; 
 		position = new Vector2(x,(float) y);
-	}
-	
-	private float setY(float x,int power) {
-		return (float) (Math.pow(-1, power)*Math.sqrt(Math.abs(Math.pow(x-originX,2) - Math.pow(radius,2)))+originY); 
 	}
 	
 	private void setPos(float x, float y) {

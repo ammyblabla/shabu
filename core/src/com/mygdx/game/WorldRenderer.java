@@ -69,29 +69,16 @@ public class WorldRenderer {
 	}
 	
 	private void drawChopstickBySprite(SpriteBatch batch) {
-		
-		Vector2 chopstickPosition = world.getChopstick().getPosition();
-		Texture chopstickImg = world.getChopstick().getChopstickImg();
-		
+		Texture chopstickImg = world.getChopstick().getChopstickImg();		
 		float[] origin = world.getChopstick().getOrigin();
-		float[] middleChopstick = world.getChopstick().getMiddle();
-		
+		float[] middleChopstick = world.getChopstick().getMiddle();		
 		float width = world.getChopstick().getChopstickImg().getWidth();
 		float height = world.getChopstick().getChopstickImg().getHeight();
 		
 		Sprite sprite = new Sprite(chopstickImg);
-		
-//		sprite.setPosition(chopstickPosition.x,chopstickPosition.y);
-//		System.out.println(chopstickPosition.x + " position " +chopstickPosition.y);
-//		sprite.setPosition(origin[0] - 0.5f * width, origin[1] - 0.5f * height);
-
+		sprite.setPosition(origin[0] - 0.5f * width, origin[1] - 0.5f * height);
 		sprite.setOrigin(middleChopstick[0],middleChopstick[1]);
 		sprite.setRotation(world.getChopstick().getAngle());
-		System.out.println(sprite.getOriginX() + " " + sprite.getOriginY());
-////		sprite.setOriginCenter();
-//		sprite.setOrigin(origin[0],origin[1]);
-//		System.out.println(sprite.getOriginX() + " origin " + sprite.getOriginY());
-//		sprite.setRotation(90);
 		sprite.draw(batch);	
 		
 	}
