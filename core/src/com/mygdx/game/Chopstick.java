@@ -13,7 +13,7 @@ public class Chopstick {
 
 	
 	public Chopstick() {
-		chopstickImg = new Texture("chopstick04.png");
+		chopstickImg = new Texture("chopstick05.png");
 //		randomChopstickPosition();
 		position = new Vector2(510,482);
 //		private void calculateCircleEquation(float xStart, float xEnd, float yStart, float yEnd)
@@ -39,18 +39,20 @@ public class Chopstick {
 	
 	public void moveAroundPot() {
 		angle += speed;
-		float x = (float)(originX + Math.cos(angle*Math.PI/180)*radius) - radius ;
-		float y  = (float)(originY + Math.sin(angle*Math.PI/180)*radius) - radius;
+		float x = (float)(originX + Math.cos(angle*Math.PI/180)*radius);
+		float y  = (float)(originY + Math.sin(angle*Math.PI/180)*radius);
 		setPos(x, y);
-//		position.rotate(angle);
-//		position.setAngle(60);
+//		System.out.println(angle);
+//		position.rotate(90+angle);
+//		position.setAngle(90);
 //		System.out.println(position.x+" "+position.y);
 	}
 	
 	private void calculateCircleEquation(float xStart, float xEnd, float yStart, float yEnd) {
 		radius = Math.abs(xEnd-xStart)/2;
-		originX = Math.min(xStart, xEnd) + radius - chopstickImg.getWidth()/2;
-		originY = Math.min(yStart, yEnd) + radius - chopstickImg.getHeight()/2;
+		originX = Math.min(xStart, xEnd) + radius ;
+		originY = Math.min(yStart, yEnd) + radius ;
+		System.out.println(radius*2);
 	}
 	
 	private void randomChopstickPosition() {
@@ -83,8 +85,8 @@ public class Chopstick {
 	
 	public float[] getMiddle() {
 		float[] middle = new float[2];
-		middle[0] = position.x + chopstickImg.getWidth()/2;
-		middle[1] = position.y + chopstickImg.getHeight()/2;
+		middle[0] = chopstickImg.getWidth()/2;
+		middle[1] = chopstickImg.getHeight()/2;
 		return middle;
 	}
 }

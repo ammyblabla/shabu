@@ -10,15 +10,18 @@ public class FoodList {
 	public World world;
 	private final int INIT_FOOD = 2;
 	private float HOWLONGLASTFOOD;
-	private final float DELAY = 1;
-	private String[] listOfFood;
+	private final float DELAY = 0.8f;
+	private List<String> listOfFood;
 
 //	private float distanceBetween2food;
 
 	public FoodList(World world) {
 		this.world = world;
 		initFood();
-		System.out.println("foodList");
+	}
+	
+	public void initListOfFood() {
+		
 	}
 	
 	public boolean foodDisappear(int pointerX, int pointerY) {
@@ -32,9 +35,7 @@ public class FoodList {
 			
 			float deltaX = pointerX-foodX;
 			float deltaY = (-1)*(pointerY-foodY);
-			
-//			System.out.println(pointerX + " "+ pointerY+" foodx"+foodX+" foodY "+ food.getY() +" " +foodY);
-			
+					
 			if (deltaX >= 0 && deltaX <= food.getFoodImg().getWidth() && deltaY >= 0 && deltaY <= food.getFoodImg().getHeight())
 			{
 				world.increaseScore();
@@ -61,22 +62,6 @@ public class FoodList {
 		}
 	}
 	
-	private boolean checkNewFoodPosition(List<Food> foods, Food foodInput) {
-		float xFoodInput = foodInput.getX();
-		float yFoodInput = foodInput.getY();
-		
-		for (Food food: foods) {
-			float xFoodLoop = food.getX();
-			float yFoodLoop = food.getY();
-			
-			if(Math.abs(xFoodInput-xFoodLoop)>=20 || Math.abs(yFoodInput - yFoodLoop)>=20) {
-				return false;
-			}
-		}
-		
-		return true;
-	}
-	
 	private long getTime() {
 		return System.currentTimeMillis();
 	}
@@ -86,9 +71,11 @@ public class FoodList {
 		if(HOWLONGLASTFOOD >= DELAY)
 		{
 			Food food = new Food("ham_cheese",getTime());
-//			while(!checkNewFoodPosition(foods,food)){
+			System.out.println(checkNewFoodPosition(food));
+//			while(!checkNewFoodPosition(food)) {
 //				food.regeneratePosition();
 //			}
+			
 			foods.add(food);
 			HOWLONGLASTFOOD = 0; 
 		}
@@ -98,19 +85,19 @@ public class FoodList {
 		return foods;
 	}
 	
-//	private boolean checkNewFoodPosition(List<Food> foods, Food foodInput) {
-//	float xFoodInput = foodInput.getX();
-//	float yFoodInput = foodInput.getY();
-//	
-//	for (Food food: foods) {
-//		float xFoodLoop = food.getX();
-//		float yFoodLoop = food.getY();
-//		
-//		if(Math.abs(xFoodInput-xFoodLoop)>=20 || Math.abs(yFoodInput - yFoodLoop)>=20) {
-//			return false;
-//		}
-//	}
-//	
-//	return true;
-//}
+	private boolean checkNewFoodPosition(Food foodInput) {
+		float xFoodInput = foodInput.getX();
+		float yFoodInput = foodInput.getY();
+		
+		for (Food food: foods) {
+			float xFoodLoop = food.getX();
+			float yFoodLoop = food.getY();
+			
+			if(Math.abs(xFoodInput-xFoodLoop) < food.getFoodImg().getWidth() || Math.abs(yFoodInput - yFoodLoop) < food.getFoodImg().getHeight()) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
 }
