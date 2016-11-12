@@ -6,7 +6,9 @@ public class World {
 	private int score;
 	private int LIFE;
 	private float LAST_DISAPPEAR = 0;
+	private float LAST_CHOPSTICKCHECKED = 0;
 	private Chopstick chopstick;
+	private boolean isChopstickClicked = false;
 	
 	public World(ShabuGame shabuGame) {
 		this.shabuGame = shabuGame;
@@ -40,10 +42,23 @@ public class World {
 		return chopstick;
 	}
 	
+	public boolean getChopstickClicked() {
+		return isChopstickClicked;
+	}
+	
+	public void setChopstickClickedTrue() {
+		isChopstickClicked = true;
+	}
+	
+	public void setChopstickClickedFalse() {
+		isChopstickClicked = false;
+	}
+	
 	public void update(float delta) {
 		foodList.foodDisappearDependDuration();
 		foodList.releaseFood(delta);
 		LAST_DISAPPEAR += delta;
+		LAST_CHOPSTICKCHECKED += delta;
 		chopstick.randomSpeed();
 		chopstick.moveAroundPot();
 	}
@@ -62,6 +77,14 @@ public class World {
 	
 	public float getScreenHeight () {
 		return shabuGame.HEIGHT;
+	}
+	
+	public void setLAST_CHOPSTICKCHECKED(float set) {
+		LAST_CHOPSTICKCHECKED = set;
+	}
+	
+	public float getLAST_CHOPSTICKCHECKED(){
+		return LAST_CHOPSTICKCHECKED;
 	}
 }
 

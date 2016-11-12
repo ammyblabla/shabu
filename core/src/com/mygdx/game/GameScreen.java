@@ -27,6 +27,16 @@ public class GameScreen extends ScreenAdapter {
 	}
 
 	public void disappearByClick() {
+//		if(world.getLAST_CHOPSTICKCHECKED() >= clickDelay){
+			if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+				System.out.println("clicked");
+				world.setChopstickClickedTrue();
+			} else {
+				System.out.println("un clicked");
+				world.setChopstickClickedFalse();
+			}
+//		}
+			
 		if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && world.getLAST_DISAPPEAR() >= clickDelay) {
 			int pointerX = Gdx.input.getX();
 			int pointerY = Gdx.input.getY();

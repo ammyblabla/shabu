@@ -77,6 +77,11 @@ public class WorldRenderer {
 		
 		Sprite sprite = new Sprite(chopstickImg);
 		sprite.setPosition(origin[0] - 0.5f * width, origin[1] - 0.5f * height);
+		if(world.getChopstickClicked()) {
+			world.getChopstick().moveChopstickWhenClicked(sprite);
+		} else {
+			world.getChopstick().moveChopstickWhenUnClicked(sprite);
+		}
 		sprite.setOrigin(middleChopstick[0], middleChopstick[1]);
 		sprite.setRotation(world.getChopstick().getAngle());
 		sprite.draw(batch);	

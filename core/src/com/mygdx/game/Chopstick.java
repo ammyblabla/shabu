@@ -3,12 +3,14 @@ package com.mygdx.game;
 import java.util.Random;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
 public class Chopstick {
 	private static Texture chopstickImg;
 	private Vector2 position;
-	private static float originX, originY, radius, angle;
+	private static float originX, originY, radius, angle, originalOriginX, originalOriginY;
+	private float move = 10;
 	private static float speed = 0.2f;
 
 	
@@ -48,6 +50,8 @@ public class Chopstick {
 		radius = Math.abs(xEnd-xStart)/2;
 		originX = Math.min(xStart, xEnd) + radius;
 		originY = Math.min(yStart, yEnd) + radius;
+		originalOriginX = originX;
+		originalOriginY = originY;
 //		System.out.println(radius*2);
 	}
 	
@@ -70,8 +74,8 @@ public class Chopstick {
 	
 	public float[] getOrigin() {
 		float[] origin = new float[2];
-		origin[0] = originX;
-		origin[1] = originY;
+		origin[0] = originalOriginX;
+		origin[1] = originalOriginY;
 		return origin;
 	}
 	
@@ -85,5 +89,26 @@ public class Chopstick {
 	public void randomSpeed() {
 		Random rand = new Random();
 		speed = (float)(rand.nextInt(250))/100f;
+	}
+	
+	public void moveChopstickWhenClicked(Sprite sprite) {
+		float x = move;
+		float y = x * (float)Math.tan(angle);
+		if(originX < originalOriginX+x) {
+			originX += x;
+			originY += y;
+		}
+		sprite.setPosition(originX - 0.5f * chopstickImg.getWidth() + x, originY - 0.5f * chopstickImg.getHeight() + y);
+//		sprite.setOrigin(getMiddle()[0], getMiddle()[1]);
+	}
+	
+	public void moveChopstickWhenUnClicked(Sprite sprite) {
+		if(originX != originalOriginX)
+		{
+			originX = originalOriginX;
+			originY = originalOriginY;
+		}
+		sprite.setPosition(originX - 0.5f * chopstickImg.getWidth(), originY - 0.5f * chopstickImg.getHeight());
+		sprite.setOrigin(getMiddle()[0], getMiddle()[1]);
 	}
 }
