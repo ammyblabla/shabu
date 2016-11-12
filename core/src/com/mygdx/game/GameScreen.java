@@ -30,10 +30,12 @@ public class GameScreen extends ScreenAdapter {
 		if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && world.getLAST_DISAPPEAR() >= clickDelay) {
 			int pointerX = Gdx.input.getX();
 			int pointerY = Gdx.input.getY();
+		
 			if(!world.getFoodList().foodDisappear(pointerX, pointerY)) {
 				world.decreaseLife();
 			}
 			world.setDisappear(0);
+			
 		}
 	}
 }

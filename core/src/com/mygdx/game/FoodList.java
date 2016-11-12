@@ -29,10 +29,10 @@ public class FoodList {
 			Food food = foods.get(i);
 			
 			float foodX = food.getX();
-			float foodY = world.getScreenHeight()-food.getY();
+			float foodY = world.getScreenHeight() - food.getY();
 			
-			float deltaX = pointerX-foodX;
-			float deltaY = (-1)*(pointerY-foodY);
+			float deltaX = pointerX - foodX;
+			float deltaY = (-1) * (pointerY - foodY);
 					
 			if (deltaX >= 0 && deltaX <= food.getFoodImg().getWidth() && 
 				deltaY >= 0 && deltaY <= food.getFoodImg().getHeight()) {
@@ -68,7 +68,7 @@ public class FoodList {
 		HOWLONGLASTFOOD += delta;
 		if(HOWLONGLASTFOOD >= DELAY) {
 			Food food = new Food("ham_cheese",getTime());
-			System.out.println(checkNewFoodPosition(food));
+//			System.out.println(checkNewFoodPosition(food));
 //			while(!checkNewFoodPosition(food)) {
 //				food.regeneratePosition();
 //			}

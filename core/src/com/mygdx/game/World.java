@@ -44,6 +44,7 @@ public class World {
 		foodList.foodDisappearDependDuration();
 		foodList.releaseFood(delta);
 		LAST_DISAPPEAR += delta;
+		chopstick.randomSpeed();
 		chopstick.moveAroundPot();
 	}
 

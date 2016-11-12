@@ -9,7 +9,7 @@ public class Chopstick {
 	private static Texture chopstickImg;
 	private Vector2 position;
 	private static float originX, originY, radius, angle;
-	private static float speed = 1;
+	private static float speed = 0.2f;
 
 	
 	public Chopstick() {
@@ -48,7 +48,7 @@ public class Chopstick {
 		radius = Math.abs(xEnd-xStart)/2;
 		originX = Math.min(xStart, xEnd) + radius;
 		originY = Math.min(yStart, yEnd) + radius;
-		System.out.println(radius*2);
+//		System.out.println(radius*2);
 	}
 	
 	private void randomChopstickPosition() {
@@ -80,5 +80,10 @@ public class Chopstick {
 		middle[0] = chopstickImg.getWidth()/2;
 		middle[1] = chopstickImg.getHeight()/2;
 		return middle;
+	}
+	
+	public void randomSpeed() {
+		Random rand = new Random();
+		speed = (float)(rand.nextInt(250))/100f;
 	}
 }
