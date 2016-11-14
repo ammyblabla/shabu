@@ -8,7 +8,8 @@ public class GameScreen extends ScreenAdapter {
 	private ShabuGame shabuGame;
 	private World world;
 	private WorldRenderer worldRenderer;
-	private float clickDelay = 0.5f;
+	private float clickDelay = 0.2f;
+	private float clickDelayChopstick = 1;
 	
 	public GameScreen(ShabuGame shabugame) {
 		this.shabuGame = shabugame;
@@ -27,14 +28,16 @@ public class GameScreen extends ScreenAdapter {
 	}
 
 	public void disappearByClick() {
-//		if(world.getLAST_CHOPSTICKCHECKED() >= clickDelay){
-			if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
-				System.out.println("clicked");
-				world.setChopstickClickedTrue();
-			} else {
-				System.out.println("un clicked");
-				world.setChopstickClickedFalse();
-			}
+//		if(world.getLAST_CHOPSTICKCHECKED() > clickDelayChopstick){
+//			if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+//				System.out.println("clicked");
+//				world.setChopstickClickedTrue();
+//				world.getChopstick().setSpeed(0);
+//			} else {
+//				System.out.println("un clicked");
+//				world.setChopstickClickedFalse();
+//				world.getChopstick().setToOldSpeed();
+//			}	
 //		}
 			
 		if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && world.getLAST_DISAPPEAR() >= clickDelay) {

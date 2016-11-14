@@ -10,8 +10,9 @@ public class Chopstick {
 	private static Texture chopstickImg;
 	private Vector2 position;
 	private static float originX, originY, radius, angle, originalOriginX, originalOriginY;
-	private float move = 10;
-	private static float speed = 0.2f;
+	private float move = 25;
+	private static float speed = 0.000000000001f;
+	private static float oldSpeed;
 
 	
 	public Chopstick() {
@@ -19,8 +20,9 @@ public class Chopstick {
 //		randomChopstickPosition();
 		position = new Vector2(510,482);
 //		private void calculateCircleEquation(float xStart, float xEnd, float yStart, float yEnd)
-		calculateCircleEquation(284,736,58,510);
+		calculateCircleEquation(284,736,65,517);
 		angle = 0;
+		oldSpeed = speed;
 	}
 	
 	public float getX() {
@@ -110,5 +112,13 @@ public class Chopstick {
 		}
 		sprite.setPosition(originX - 0.5f * chopstickImg.getWidth(), originY - 0.5f * chopstickImg.getHeight());
 		sprite.setOrigin(getMiddle()[0], getMiddle()[1]);
+	}
+	
+	public void setSpeed(float set) {
+		speed = set;
+	}
+	
+	public void setToOldSpeed() {
+		speed = oldSpeed;
 	}
 }

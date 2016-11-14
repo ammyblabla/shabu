@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+import java.util.List;
+
 public class World {
 	private ShabuGame shabuGame;
 	private FoodList foodList;
@@ -9,6 +11,7 @@ public class World {
 	private float LAST_CHOPSTICKCHECKED = 0;
 	private Chopstick chopstick;
 	private boolean isChopstickClicked = false;
+	public boolean wasChopstickClicked = false;
 	
 	public World(ShabuGame shabuGame) {
 		this.shabuGame = shabuGame;
@@ -57,6 +60,7 @@ public class World {
 	public void update(float delta) {
 		foodList.foodDisappearDependDuration();
 		foodList.releaseFood(delta);
+		updateFood();
 		LAST_DISAPPEAR += delta;
 		LAST_CHOPSTICKCHECKED += delta;
 		chopstick.randomSpeed();
@@ -85,6 +89,17 @@ public class World {
 	
 	public float getLAST_CHOPSTICKCHECKED(){
 		return LAST_CHOPSTICKCHECKED;
+	}
+	
+	public long getTime() {
+		return System.currentTimeMillis();
+	}
+	
+	private void updateFood() {
+		List<Food> list = foodList.getList();
+		for(Food food : list) {
+			food.update();
+		}
 	}
 }
 

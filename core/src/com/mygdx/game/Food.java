@@ -12,14 +12,21 @@ public class Food {
 	private SpriteBatch batch;
 	private long bornTime; //millisecond
 	private long DURATION = 5000;
+	private long DURATION_SOOK = 3000;
 	private float radius;
 	private float originX;
 	private float originY;
+	private boolean isSook;
+	private String imagefile;
+	private World world;
 	
-	public Food(String imagefile, long bornTime) {
+	public Food(String imagefile, long bornTime, World world) {
 		foodImg = new Texture(imagefile+".png");
 		generatePosition();
 		this.bornTime = bornTime;
+		isSook = false;
+		world = this.world;
+		this.imagefile = imagefile;
 	}
 	
 	private void generatePosition() {
@@ -84,4 +91,25 @@ public class Food {
 		Vector2 tmp = new Vector2(x,y);
 		this.position = tmp.cpy();
 	}	
+	
+	public void setNewPicture(String name) {
+		Texture tmp = new Texture(name + ".png");
+		foodImg = tmp;
+	}
+	
+	public void setSook() {
+		setNewPicture(imagefile + "sook");
+		isSook = true;
+	}
+	
+	public void update() {
+		if(getTime() - bornTime >= DURATION_SOOK) {
+			Texture tmp = new Texture(imagefile + "sook.png");
+			foodImg = tmp;
+		}
+	}
+	
+	public long getTime() {
+		return System.currentTimeMillis();
+	}
 }
