@@ -16,27 +16,19 @@ public class FoodList {
 
 	public FoodList(World world) {
 		this.world = world;
+		listOfFood = new ArrayList<String>();
+		initListOfFood();
 		initFood();
 	}
 	
 	public void initListOfFood() {
-		listOfFood = new ArrayList<String>();
-		listOfFood.add("ham_cheese");
-//		listOfFood.add("cucumber");
-//		listOfFood.add("corn");
-//		listOfFood.add("meat1");
-//		listOfFood.add("meat2");
-//		listOfFood.add("pork1");
-//		listOfFood.add("pork2");
-//		listOfFood.add("meatball_cheese");
-//		listOfFood.add("meatball_crystalFisEgg");
-//		listOfFood.add("meatball_pork");
-//		listOfFood.add("tofu_fish");
-	
+		listOfFood.add("meat1");
+		listOfFood.add("meat2");
 	}
+	
 	public boolean foodDisappear(int pointerX, int pointerY) {
 		
-		for (int i=foods.size()-1; i >= 0; i--)
+		for (int i = foods.size()-1; i >= 0; i--)
 		{
 			Food food = foods.get(i);
 			
@@ -75,7 +67,8 @@ public class FoodList {
 	public void releaseFood(float delta) {
 		HOWLONGLASTFOOD += delta;
 		if(HOWLONGLASTFOOD >= DELAY) {
-			Food food = new Food("meat2",world.getTime(),this.world);
+			Food food = new Food(randomFood(),world.getTime(),this.world);
+//			System.out.println(randomFood());
 //			food.setSook();
 //			System.out.println(checkNewFoodPosition(food));
 //			while(!checkNewFoodPosition(food)) {

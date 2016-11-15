@@ -65,6 +65,7 @@ public class World {
 		LAST_CHOPSTICKCHECKED += delta;
 		chopstick.randomSpeed();
 		chopstick.moveAroundPot();
+//		Food release
 	}
 
 	public void setDisappear(float set) {
