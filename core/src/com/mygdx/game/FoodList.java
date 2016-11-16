@@ -27,6 +27,7 @@ public class FoodList {
 		listOfFood.add("ham_cheese");
 		listOfFood.add("pork1");
 		listOfFood.add("pork2");
+		listOfFood.add("corn");
 	}
 	
 	public boolean foodDisappear(int pointerX, int pointerY) {
@@ -79,7 +80,13 @@ public class FoodList {
 	public void releaseFood(float delta) {
 		HOWLONGLASTFOOD += delta;
 		if(HOWLONGLASTFOOD >= DELAY) {
-			Food food = new Food(randomFood(),world.getTime(),this.world);
+			String nameFood = randomFood();
+			Food food;
+			if(nameFood == "corn") {
+				food = new Corn(nameFood, world.getTime(), this.world);
+			} else {
+				food = new Food(nameFood,world.getTime(),this.world);
+			}
 			foods.add(food);
 			HOWLONGLASTFOOD = 0; 
 		}

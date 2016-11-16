@@ -50,6 +50,10 @@ public class World {
 		return LIFE;
 	}
 	
+	public void setLife(int i) {
+		LIFE = i;
+	}
+	
 //	public Chopstick getChopstick() {
 //		return chopstick;
 //	}

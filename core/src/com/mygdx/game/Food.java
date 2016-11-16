@@ -24,7 +24,7 @@ public class Food {
 	private int decreaseScore = 3;
 	
 	public Food(String imagefile, long bornTime, World world) {
-		this.world = world;
+		this.setWorld(world);
 		foodImg = new Texture(imagefile+".png");
 		this.bornTime = bornTime;
 		this.imagefile = imagefile;
@@ -85,7 +85,7 @@ public class Food {
 	}
 	
 	public boolean getIsSook() {
-		return isSook;
+		return isSook();
 	}
 	
 	private void calculateCircleEquation(float xStart, float xEnd, float yStart, float yEnd) {
@@ -125,7 +125,29 @@ public class Food {
 	}
 	
 	public void eated() {
-		world.increaseScore();
+		getWorld().increaseScore();
+	}
+
+	public World getWorld() {
+		return world;
+	}
+
+	public void setWorld(World world) {
+		this.world = world;
+	}
+
+	/**
+	 * @return the isSook
+	 */
+	public boolean isSook() {
+		return isSook;
+	}
+
+	/**
+	 * @param isSook the isSook to set
+	 */
+	public void setSook(boolean isSook) {
+		this.isSook = isSook;
 	}
 
 }
