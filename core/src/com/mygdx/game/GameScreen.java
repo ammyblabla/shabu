@@ -47,25 +47,35 @@ public class GameScreen extends ScreenAdapter {
 		}
 	}
 	
-	public void chooseScreen(float delta) {
+	private void chooseScreen(float delta) {
+		if(!setPauseScreen(delta))
+		{
+			if(dieTime < world.getTime() && dieTime > 0) {
+				gameOverScreen.render(delta);
+				System.out.println("game over");
+			} else if(world.getLife() == 0 && dieTime <= world.getTime()) {
+				dieTime = world.getTime();
+				worldRenderer.render(delta);
+			} else {
+				worldRenderer.render(delta);
+			}
+		}
+	}
+	
+	private boolean setPauseScreen (float delta) {
 		if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && isPause == false) {
 			System.out.println("pause");
 			isPause = true;
 			pauseScreen.render(delta); 
+			return true;
 		} else if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && isPause == true) {
 			isPause = false;
 			worldRenderer.render(delta);
-		}else if (isPause == true){
+			return true;
+		} else if (isPause == true){
 			pauseScreen.render(delta); 
-		} else if(dieTime < world.getTime() && dieTime > 0) {
-			gameOverScreen.render(delta);
-			System.out.println("game over");
-		} else if(world.getLife() == 0 && dieTime <= world.getTime()) {
-			dieTime = world.getTime();
-			worldRenderer.render(delta);
-		}
-		else {
-			worldRenderer.render(delta);
-		}
+			return true;
+		} 
+		return false;
 	}
 }
