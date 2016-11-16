@@ -12,6 +12,7 @@ public class GameScreen extends ScreenAdapter {
 	private float clickDelayChopstick = 1;
 	private PauseScreen pauseScreen;
 	private GameOverScreen gameOverScreen;
+	private static long dieTime = 0;
 	
 	public GameScreen(ShabuGame shabugame) {
 		this.shabuGame = shabugame;
@@ -23,11 +24,16 @@ public class GameScreen extends ScreenAdapter {
 	
 	public void render(float delta) {
 		update(delta);
-	
-		if(world.getLife() <= 0) {
-//			pauseScreen.render(delta);
+			
+		if(dieTime < world.getTime() && dieTime > 0) {
 			gameOverScreen.render(delta);
-		} else {
+			System.out.println("game over");
+		} else if(world.getLife() == 0 && dieTime <= world.getTime()) {
+			dieTime = world.getTime();
+			worldRenderer.render(delta);
+			System.out.println(dieTime);
+		}
+		else {
 			worldRenderer.render(delta);
 		}
 		
