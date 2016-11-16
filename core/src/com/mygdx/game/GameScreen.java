@@ -50,13 +50,7 @@ public class GameScreen extends ScreenAdapter {
 	private void chooseScreen(float delta) {
 		if(!setPauseScreen(delta))
 		{
-			if(dieTime < world.getTime() && dieTime > 0) {
-				gameOverScreen.render(delta);
-				System.out.println("game over");
-			} else if(world.getLife() == 0 && dieTime <= world.getTime()) {
-				dieTime = world.getTime();
-				worldRenderer.render(delta);
-			} else {
+			if(!setGameOverScreen(delta)) {
 				worldRenderer.render(delta);
 			}
 		}
@@ -76,6 +70,19 @@ public class GameScreen extends ScreenAdapter {
 			pauseScreen.render(delta); 
 			return true;
 		} 
+		return false;
+	}
+	
+	private boolean setGameOverScreen (float delta) {
+		if(dieTime < world.getTime() && dieTime > 0) {
+			gameOverScreen.render(delta);
+//			System.out.println("game over");
+			return true;
+		} else if(world.getLife() == 0 && dieTime <= world.getTime()) {
+			dieTime = world.getTime();
+			worldRenderer.render(delta);
+			return true;
+		}
 		return false;
 	}
 }
