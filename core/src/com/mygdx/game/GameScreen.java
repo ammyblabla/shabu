@@ -13,6 +13,7 @@ public class GameScreen extends ScreenAdapter {
 	private PauseScreen pauseScreen;
 	private GameOverScreen gameOverScreen;
 	private static long dieTime = 0;
+	private boolean isPause = false;
 	
 	public GameScreen(ShabuGame shabugame) {
 		this.shabuGame = shabugame;
@@ -24,20 +25,7 @@ public class GameScreen extends ScreenAdapter {
 	
 	public void render(float delta) {
 		update(delta);
-			
-		if(dieTime < world.getTime() && dieTime > 0) {
-			gameOverScreen.render(delta);
-			System.out.println("game over");
-		} else if(world.getLife() == 0 && dieTime <= world.getTime()) {
-			dieTime = world.getTime();
-			worldRenderer.render(delta);
-			System.out.println(dieTime);
-		}
-		else {
-			worldRenderer.render(delta);
-		}
-		
-		
+		chooseScreen(delta);
 	}
 	
 	public void update(float delta) {
@@ -56,6 +44,19 @@ public class GameScreen extends ScreenAdapter {
 			}
 			world.setDisappear(0);
 			
+		}
+	}
+	
+	public void chooseScreen(float delta) {
+		if(dieTime < world.getTime() && dieTime > 0) {
+			gameOverScreen.render(delta);
+			System.out.println("game over");
+		} else if(world.getLife() == 0 && dieTime <= world.getTime()) {
+			dieTime = world.getTime();
+			worldRenderer.render(delta);
+		}
+		else {
+			worldRenderer.render(delta);
 		}
 	}
 }

@@ -19,7 +19,7 @@ public class PauseScreen extends ScreenAdapter {
 		SpriteBatch batch = shabuGame.batch;	
 		batch = new SpriteBatch();
 		batch.begin();
-		pauseFont.draw(batch,"Pause",200,200);
+		pauseFont.draw(batch,"Pause",375,300);
 		batch.end();
 	}
 
