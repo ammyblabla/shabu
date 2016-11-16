@@ -12,10 +12,14 @@ public class World {
 	private Chopstick chopstick;
 	private boolean isChopstickClicked = false;
 	public boolean wasChopstickClicked = false;
+	public boolean[] positionFood;
+
 	
 	public World(ShabuGame shabuGame) {
 		this.shabuGame = shabuGame;
 		chopstick = new Chopstick();
+		positionFood = new boolean[5];
+		initPositionFood();
 		foodList = new FoodList(this);
 		LIFE = 3;
 		score = 0;
@@ -23,6 +27,10 @@ public class World {
 	
 	public void increaseScore() {
 		score++;
+	}
+	
+	public void decreaseScore(int i) {
+		score -= i;
 	}
 	
 	public void decreaseLife() {
@@ -65,7 +73,6 @@ public class World {
 		LAST_CHOPSTICKCHECKED += delta;
 		chopstick.randomSpeed();
 		chopstick.moveAroundPot();
-//		Food release
 	}
 
 	public void setDisappear(float set) {
@@ -101,6 +108,37 @@ public class World {
 		for(Food food : list) {
 			food.update();
 		}
+	}
+	
+	private void initPositionFood() {
+		for(int i=0; i<positionFood.length; i++) {
+			positionFood[i] = false;
+		}
+	}
+	
+	public boolean[] getPositionFood() {
+		return positionFood;
+	}
+	
+	public boolean isPositionFood(int i) {
+		return positionFood[i];
+	}
+	
+	public void setPositionFoodFalse(int i) {
+		positionFood[i] = false;
+		System.out.println(positionFood[i]);
+	}
+	
+	public void setPositionFoodTrue(int i) {
+		positionFood[i] = true;
+		System.out.println(positionFood[i]);
+	}
+	
+	public void printArr(boolean[] arr) {
+		for(int i=0; i<arr.length; i++) {
+			System.out.print(i+" ");
+		}
+		System.out.println();
 	}
 }
 

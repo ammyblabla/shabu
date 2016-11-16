@@ -11,7 +11,6 @@ public class FoodList {
 	private float HOWLONGLASTFOOD;
 	private final float DELAY = 0.8f;
 	private List<String> listOfFood;
-
 //	private float distanceBetween2food;
 
 	public FoodList(World world) {
@@ -19,11 +18,13 @@ public class FoodList {
 		listOfFood = new ArrayList<String>();
 		initListOfFood();
 		initFood();
+		world.printArr(world.getPositionFood());
 	}
 	
 	public void initListOfFood() {
-		listOfFood.add("meat1");
-		listOfFood.add("meat2");
+//		listOfFood.add("meat1");
+//		listOfFood.add("meat2");
+		listOfFood.add("ham_cheese");
 	}
 	
 	public boolean foodDisappear(int pointerX, int pointerY) {
@@ -40,7 +41,15 @@ public class FoodList {
 					
 			if (deltaX >= 0 && deltaX <= food.getFoodImg().getWidth() && 
 				deltaY >= 0 && deltaY <= food.getFoodImg().getHeight()) {
-				world.increaseScore();
+				Food tmp = foods.get(i);
+				System.out.println(tmp.getIsSook());				
+				if(tmp.getIsSook() == false) {
+					world.decreaseScore(tmp.getDecreaseScore());
+				} else {
+					world.increaseScore();
+				}
+				
+//				world.positionFood[tmp.positionNumber] = false;
 				foods.remove(foods.get(i));
 				return true;
 			}
@@ -68,13 +77,6 @@ public class FoodList {
 		HOWLONGLASTFOOD += delta;
 		if(HOWLONGLASTFOOD >= DELAY) {
 			Food food = new Food(randomFood(),world.getTime(),this.world);
-//			System.out.println(randomFood());
-//			food.setSook();
-//			System.out.println(checkNewFoodPosition(food));
-//			while(!checkNewFoodPosition(food)) {
-//				food.regeneratePosition();
-//			}
-			
 			foods.add(food);
 			HOWLONGLASTFOOD = 0; 
 		}
@@ -82,24 +84,6 @@ public class FoodList {
 	
 	public List<Food> getList() {
 		return foods;
-	}
-	
-	private boolean checkNewFoodPosition(Food foodInput) {
-		float xFoodInput = foodInput.getX();
-		float yFoodInput = foodInput.getY();
-		
-		for (Food food: foods) {
-			float xFoodLoop = food.getX();
-			float yFoodLoop = food.getY();
-			
-			if (Math.abs(xFoodInput-xFoodLoop) < food.getFoodImg().getWidth() || 
-				Math.abs(yFoodInput - yFoodLoop) < food.getFoodImg().getHeight()) {
-				
-				return false;
-			}
-		}
-		
-		return true;
 	}
 	
 	private String randomFood() {
