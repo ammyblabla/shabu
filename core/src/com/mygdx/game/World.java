@@ -38,6 +38,10 @@ public class World {
 		LIFE--;
 	}
 	
+	public void increaseLife() {
+		LIFE++;
+	}
+	
 	public FoodList getFoodList() {
 		return foodList;
 	}

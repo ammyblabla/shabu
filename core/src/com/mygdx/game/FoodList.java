@@ -27,6 +27,7 @@ public class FoodList {
 		listOfFood.add("ham_cheese");
 		listOfFood.add("pork1");
 		listOfFood.add("pork2");
+		listOfFood.add("babycorn");
 		listOfFood.add("corn");
 	}
 	
@@ -81,12 +82,15 @@ public class FoodList {
 		HOWLONGLASTFOOD += delta;
 		if(HOWLONGLASTFOOD >= DELAY) {
 			String nameFood = randomFood();
-			Food food;
+			Food food = null;
 			if(nameFood == "corn") {
 				food = new Corn(nameFood, world.getTime(), this.world);
-			} else {
+			} else if(nameFood == "babycorn") {
+				food = new Babycorn(nameFood, world.getTime(), this.world);
+			}else {
 				food = new Food(nameFood,world.getTime(),this.world);
 			}
+//			chooseConstructor(food,nameFood);
 			foods.add(food);
 			HOWLONGLASTFOOD = 0; 
 		}
@@ -105,5 +109,13 @@ public class FoodList {
 	
 	public void setDelay(float i) {
 		DELAY = i;
+	}
+	
+	private void chooseConstructor(Food food, String nameFood) {
+		if(nameFood == "corn") {
+			food = new Corn(nameFood, world.getTime(), this.world);
+		} else {
+			food = new Food(nameFood,world.getTime(),this.world);
+		}
 	}
 }

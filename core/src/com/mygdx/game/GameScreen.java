@@ -9,7 +9,7 @@ public class GameScreen extends ScreenAdapter {
 	private World world;
 	private WorldRenderer worldRenderer;
 	private float clickDelay = 0.5f;
-	private float clickDelayChopstick = 1;
+//	private float clickDelayChopstick = 1;
 	private PauseScreen pauseScreen;
 	private GameOverScreen gameOverScreen;
 	private static long dieTime = 0;
