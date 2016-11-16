@@ -8,23 +8,36 @@ public class GameScreen extends ScreenAdapter {
 	private ShabuGame shabuGame;
 	private World world;
 	private WorldRenderer worldRenderer;
-	private float clickDelay = 0.2f;
+	private float clickDelay = 0.5f;
 	private float clickDelayChopstick = 1;
+	private PauseScreen pauseScreen;
+	private GameOverScreen gameOverScreen;
 	
 	public GameScreen(ShabuGame shabugame) {
 		this.shabuGame = shabugame;
 		world = new World(shabugame);
 		worldRenderer = new WorldRenderer(shabugame,world);
+		pauseScreen = new PauseScreen(shabugame);
+		gameOverScreen = new GameOverScreen(shabugame);
 	}
 	
 	public void render(float delta) {
 		update(delta);
-		worldRenderer.render(delta);
+	
+		if(world.getLife() <= 0) {
+//			pauseScreen.render(delta);
+			gameOverScreen.render(delta);
+		} else {
+			worldRenderer.render(delta);
+		}
+		
+		
 	}
 	
 	public void update(float delta) {
 		world.update(delta);	
 		disappearByClick();
+		
 	}
 
 	public void disappearByClick() {

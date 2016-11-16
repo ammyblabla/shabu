@@ -4,11 +4,11 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class PauseScreen extends ScreenAdapter {
+public class GameOverScreen extends ScreenAdapter {
 	private ShabuGame shabuGame;
 	private BitmapFont pauseFont;
 	
-	public PauseScreen(ShabuGame shabuGame) {
+	public GameOverScreen(ShabuGame shabuGame) {
 		this.shabuGame = shabuGame;
 		pauseFont = new BitmapFont();
 		pauseFont.getData().setScale(4, 4);
@@ -19,7 +19,7 @@ public class PauseScreen extends ScreenAdapter {
 		SpriteBatch batch = shabuGame.batch;	
 		batch = new SpriteBatch();
 		batch.begin();
-		pauseFont.draw(batch,"Pause",200,200);
+		pauseFont.draw(batch,"Game Over",375 ,300);
 		batch.end();
 	}
 

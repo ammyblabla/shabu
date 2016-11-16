@@ -18,7 +18,7 @@ public class FoodList {
 		listOfFood = new ArrayList<String>();
 		initListOfFood();
 		initFood();
-		world.printArr(world.getPositionFood());
+//		world.printArr(world.getPositionFood());
 	}
 	
 	public void initListOfFood() {

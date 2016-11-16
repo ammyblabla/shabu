@@ -27,7 +27,6 @@ public class Food {
 		this.world = world;
 		foodImg = new Texture(imagefile+".png");
 		this.bornTime = bornTime;
-//		isSook = false;
 		this.imagefile = imagefile;
 		generatePosition();
 	 

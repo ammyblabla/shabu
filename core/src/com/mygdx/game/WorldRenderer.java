@@ -37,6 +37,11 @@ public class WorldRenderer {
 		drawText(batch);
 		drawFood(batch);
 		batch.end();
+		
+//		if(world.getLife() <= 0){
+//			shabuGame.setScreen(new GameOverScreen(shabuGame));
+//	        shabugame.dispose();
+//	    }
 	}
 	
 	public void drawFood(SpriteBatch batch) {

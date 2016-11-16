@@ -13,6 +13,7 @@ public class World {
 	private boolean isChopstickClicked = false;
 	public boolean wasChopstickClicked = false;
 	public boolean[] positionFood;
+	public boolean isGameOver = false;
 
 	
 	public World(ShabuGame shabuGame) {
@@ -73,6 +74,7 @@ public class World {
 		LAST_CHOPSTICKCHECKED += delta;
 		chopstick.randomSpeed();
 		chopstick.moveAroundPot();
+		
 	}
 
 	public void setDisappear(float set) {
