@@ -12,8 +12,8 @@ public class Food {
 	private SpriteBatch batch;
 	private long bornTime; //millisecond
 	private long DURATION = 5000;
-	private long DURATION_SOOK = 3000;
-	private float xStart = 384;;
+	private long DURATION_SOOK = 2000;
+	private float xStart = 384;
 	private float radius;
 	private float originX;
 	private float originY;
@@ -123,5 +123,7 @@ public class Food {
 	public int getDecreaseScore() {
 		return decreaseScore;
 	}
+	
+
 
 }

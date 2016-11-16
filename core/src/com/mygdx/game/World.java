@@ -9,16 +9,16 @@ public class World {
 	private int LIFE;
 	private float LAST_DISAPPEAR = 0;
 	private float LAST_CHOPSTICKCHECKED = 0;
-	private Chopstick chopstick;
-	private boolean isChopstickClicked = false;
-	public boolean wasChopstickClicked = false;
+//	private Chopstick chopstick;
+//	private boolean isChopstickClicked = false;
+//	public boolean wasChopstickClicked = false;
 	public boolean[] positionFood;
 	public boolean isGameOver = false;
+	private int stage = 1;
 
-	
 	public World(ShabuGame shabuGame) {
 		this.shabuGame = shabuGame;
-		chopstick = new Chopstick();
+//		chopstick = new Chopstick();
 		positionFood = new boolean[5];
 		initPositionFood();
 		foodList = new FoodList(this);
@@ -50,30 +50,31 @@ public class World {
 		return LIFE;
 	}
 	
-	public Chopstick getChopstick() {
-		return chopstick;
-	}
-	
-	public boolean getChopstickClicked() {
-		return isChopstickClicked;
-	}
-	
-	public void setChopstickClickedTrue() {
-		isChopstickClicked = true;
-	}
-	
-	public void setChopstickClickedFalse() {
-		isChopstickClicked = false;
-	}
+//	public Chopstick getChopstick() {
+//		return chopstick;
+//	}
+//	
+//	public boolean getChopstickClicked() {
+//		return isChopstickClicked;
+//	}
+//	
+//	public void setChopstickClickedTrue() {
+//		isChopstickClicked = true;
+//	}
+//	
+//	public void setChopstickClickedFalse() {
+//		isChopstickClicked = false;
+//	}
 	
 	public void update(float delta) {
-		foodList.foodDisappearDependDuration();
+//		foodList.foodDisappearDependDuration();
 		foodList.releaseFood(delta);
 		updateFood();
 		LAST_DISAPPEAR += delta;
-		LAST_CHOPSTICKCHECKED += delta;
-		chopstick.randomSpeed();
-		chopstick.moveAroundPot();
+		checkStage();
+//		LAST_CHOPSTICKCHECKED += delta;
+//		chopstick.randomSpeed();
+//		chopstick.moveAroundPot();
 		
 	}
 
@@ -141,6 +142,21 @@ public class World {
 			System.out.print(i+" ");
 		}
 		System.out.println();
+	}
+	
+	public void setStage() {
+		if(stage == 2) {
+			foodList.setDelay(2.25f);
+		}
+	}
+	
+	public void checkStage() {
+		if(score > 10) {
+			stage = 2;
+			setStage();
+			System.out.println("stage 2");
+		}
+		
 	}
 }
 

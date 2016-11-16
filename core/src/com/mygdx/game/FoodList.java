@@ -9,7 +9,7 @@ public class FoodList {
 	public World world;
 	private final int INIT_FOOD = 2;
 	private float HOWLONGLASTFOOD;
-	private final float DELAY = 0.8f;
+	private float DELAY = 2;
 	private List<String> listOfFood;
 //	private float distanceBetween2food;
 
@@ -22,9 +22,11 @@ public class FoodList {
 	}
 	
 	public void initListOfFood() {
-//		listOfFood.add("meat1");
-//		listOfFood.add("meat2");
+		listOfFood.add("meat1");
+		listOfFood.add("meat2");
 		listOfFood.add("ham_cheese");
+		listOfFood.add("pork1");
+		listOfFood.add("pork2");
 	}
 	
 	public boolean foodDisappear(int pointerX, int pointerY) {
@@ -37,8 +39,9 @@ public class FoodList {
 			float foodY = world.getScreenHeight() - food.getY();
 			
 			float deltaX = pointerX - foodX;
-			float deltaY = (-1) * (pointerY - foodY);
-					
+//			float deltaY = (-1) * (pointerY - foodY);
+			float deltaY = Math.abs(pointerY - foodY);
+
 			if (deltaX >= 0 && deltaX <= food.getFoodImg().getWidth() && 
 				deltaY >= 0 && deltaY <= food.getFoodImg().getHeight()) {
 				Food tmp = foods.get(i);
@@ -91,5 +94,9 @@ public class FoodList {
 		int i = rand.nextInt(listOfFood.size());
 		return listOfFood.get(i);
 		
+	}
+	
+	public void setDelay(float i) {
+		DELAY = i;
 	}
 }

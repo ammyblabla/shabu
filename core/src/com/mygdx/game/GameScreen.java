@@ -14,6 +14,7 @@ public class GameScreen extends ScreenAdapter {
 	private GameOverScreen gameOverScreen;
 	private static long dieTime = 0;
 	private boolean isPause = false;
+	private boolean isDie;
 	
 	public GameScreen(ShabuGame shabugame) {
 		this.shabuGame = shabugame;
@@ -43,13 +44,11 @@ public class GameScreen extends ScreenAdapter {
 				world.decreaseLife();
 			}
 			world.setDisappear(0);
-			
 		}
 	}
 	
 	private void chooseScreen(float delta) {
-		if(!setPauseScreen(delta))
-		{
+		if(!setPauseScreen(delta) && isDie == false) {
 			if(!setGameOverScreen(delta)) {
 				worldRenderer.render(delta);
 			}
@@ -74,9 +73,15 @@ public class GameScreen extends ScreenAdapter {
 	}
 	
 	private boolean setGameOverScreen (float delta) {
+//		if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER) && isDie == true) {
+//			World tmp = new World(shabuGame);
+//			this.world = tmp;
+//			isDie = false;
+//			return true;
+//		}
 		if(dieTime < world.getTime() && dieTime > 0) {
 			gameOverScreen.render(delta);
-//			System.out.println("game over");
+			isDie = true;
 			return true;
 		} else if(world.getLife() == 0 && dieTime <= world.getTime()) {
 			dieTime = world.getTime();
