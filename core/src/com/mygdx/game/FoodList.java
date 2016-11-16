@@ -45,11 +45,11 @@ public class FoodList {
 			if (deltaX >= 0 && deltaX <= food.getFoodImg().getWidth() && 
 				deltaY >= 0 && deltaY <= food.getFoodImg().getHeight()) {
 				Food tmp = foods.get(i);
-				System.out.println(tmp.getIsSook());				
+//				System.out.println(tmp.getIsSook());				
 				if(tmp.getIsSook() == false) {
 					world.decreaseScore(tmp.getDecreaseScore());
 				} else {
-					world.increaseScore();
+					tmp.eated();
 				}
 				
 //				world.positionFood[tmp.positionNumber] = false;

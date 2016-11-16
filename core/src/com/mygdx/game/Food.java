@@ -124,6 +124,8 @@ public class Food {
 		return decreaseScore;
 	}
 	
-
+	public void eated() {
+		world.increaseScore();
+	}
 
 }
