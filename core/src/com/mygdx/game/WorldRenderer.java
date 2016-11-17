@@ -16,6 +16,7 @@ public class WorldRenderer {
 	private Texture shabuImg;
 	private BitmapFont scoreText;
 	private BitmapFont lifeText;
+	private BitmapFont stageText;
 	private final int SCALE_TEXT = 2;
 	
 	public WorldRenderer(ShabuGame shabuGame, World world) {
@@ -25,6 +26,7 @@ public class WorldRenderer {
 		
 		scoreText = new BitmapFont();
 		lifeText = new BitmapFont();
+		stageText = new BitmapFont();
 	}
 	
 	public void render(float delta) {
@@ -62,6 +64,11 @@ public class WorldRenderer {
 		lifeText.getData().setScale(SCALE_TEXT, SCALE_TEXT);
 	}
 	
+	public  void setStageText() {
+		stageText.getData().setScale(SCALE_TEXT, SCALE_TEXT);
+
+	}
+	
 	private long getTime() {
 		return System.currentTimeMillis();
 	}
@@ -71,6 +78,8 @@ public class WorldRenderer {
 		scoreText.draw(batch, "score: " + world.getScore(),50, 100);
 		setLifeText();
 		lifeText.draw(batch, "life: " + world.getLife(),50, 50);
+		setStageText();
+		stageText.draw(batch, "stage: " + world.getStage(),50, 200);
 	}
 	
 //	private void drawChopstickBySprite(SpriteBatch batch) {

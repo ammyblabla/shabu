@@ -121,5 +121,21 @@ public class FoodList {
 	
 	public void addListFood(String nameFood) {
 		listOfFood.add(nameFood);
+		printList();
+	}
+	
+	public void printList() {
+		for(String i : listOfFood) {
+			System.out.print(i + " ");
+		}
+		System.out.println();
+	}
+	
+	public boolean isInList(String nameFood) {
+		for(String i : listOfFood) {
+			if(i == nameFood)
+				return true;
+		}
+		return false;
 	}
 }
