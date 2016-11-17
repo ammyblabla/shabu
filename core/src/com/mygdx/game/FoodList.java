@@ -84,30 +84,32 @@ public class FoodList {
 	public void releaseFood(float delta) {
 		HOWLONGLASTFOOD += delta;
 		if(HOWLONGLASTFOOD >= DELAY) {
-//			String nameFood = randomFood();
+			String nameFood = randomFood();
 			int random = world.randomNum();			
 //			System.out.println("zero" + zero.x + zero.y);
 			Vector2 foodPosition = world.generatePosition(new Texture("meat1.png"), random);
 //			System.out.println(foodPosition.isZero());
 			if(!foodPosition.isZero()) {			
-	//			Food food = null;
-				Food food = new Food("meat1", world.getTime(), this.world, foodPosition);
-				food.positionNumber = random;
-				System.out.println("food " + food.getPosition().x + " " +food.getPosition().y);
+				Food food = null;
+//				Food food = new Food("meat1", world.getTime(), this.world, foodPosition);
+//				System.out.println("food " + food.getPosition().x + " " +food.getPosition().y);
 
-	//			if(nameFood == "corn") {
-	//				food = new Corn(nameFood, world.getTime(), this.world);
-	//			} else if(nameFood == "babycorn") {
-	//				food = new Babycorn(nameFood, world.getTime(), this.world);
-	//			}else {
-	//				food = new Food(nameFood,world.getTime(),this.world);
-	//			}
-	//			chooseConstructor(food,nameFood);
+				if(nameFood == "corn") {
+					food = new Corn(nameFood, world.getTime(), this.world, foodPosition);
+				} else if(nameFood == "babycorn") {
+					food = new Babycorn(nameFood, world.getTime(), this.world, foodPosition);
+				}else {
+					food = new Food(nameFood,world.getTime(),this.world, foodPosition);
+				}
+				food.positionNumber = random;
+
+//				chooseConstructor(food,nameFood);
 				foods.add(food);
 				HOWLONGLASTFOOD = 0; 
-			} else {
-				System.out.println("regen position");
-			}
+			} 
+//			else {
+//				System.out.println("regen position");
+//			}
 		}
 	}
 	
