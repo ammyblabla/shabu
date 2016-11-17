@@ -91,10 +91,9 @@ public class World {
 		foodList.releaseFood(delta);
 		updateFood();
 		LAST_DISAPPEAR += delta;
-		if(score % 10 == 0) {
+		if(score % 5 == 0) {
 			checkStage();
 		}
-//		LAST_CHOPSTICKCHECKED += delta;
 		chopstick.randomSpeed();
 		chopstick.moveAroundPot();
 		
@@ -168,23 +167,31 @@ public class World {
 	
 	public void setStage() {
 		if(stage == 2) {
-			foodList.setDelay(2.25f);
+			foodList.setDelay(1.5f);
 			if(!foodList.isInList("babycorn"))
 				foodList.addListFood("babycorn");
 		} else if (stage == 3) {
-			foodList.setDelay(1.8f);
+			foodList.setDelay(1f);
+		} else if (stage == 4) {
+			foodList.setDelay(0.5f);
+		} else if (stage == 5) {
+			foodList.setDelay(0.3f);
 		}
 	}
 	
 	public void checkStage() {
-		if(score > 20) {
-			stage = 3;
-			setStage();
+		if(score == 20){
+			stage = 5;
+		} else if(score == 15) {
+			stage = 4;
 		} else if(score == 10) {
+			stage = 3;
+		} else if(score == 5) {
 			stage = 2;
-			setStage();
-//			System.out.println("stage 2");
+		} else {
+			foodList.setDelay(0.3f);
 		}
+		setStage();
 		
 	}
 	

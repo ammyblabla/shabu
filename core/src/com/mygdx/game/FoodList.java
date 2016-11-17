@@ -105,7 +105,6 @@ public class FoodList {
 		Random rand = new Random();
 		int i = rand.nextInt(listOfFood.size());
 		return listOfFood.get(i);
-		
 	}
 	
 	public void setDelay(float i) {
