@@ -57,14 +57,6 @@ public class Chopstick {
 //		System.out.println(radius*2);
 	}
 	
-	private void randomChopstickPosition() {
-		Random rand = new Random();
-		float x = rand.nextInt(2*(int)radius+1) + originX - radius;
-		float power = rand.nextInt(2);
-		double y = Math.pow(-1, power)*Math.sqrt(Math.abs(Math.pow(x-originX,2) - Math.pow(radius,2)))+originY; 
-		position = new Vector2(x,(float) y);
-	}
-	
 	private void setPos(float x, float y) {
 		Vector2 tmp = new Vector2(x,y);
 		this.position = tmp.cpy();
@@ -104,7 +96,7 @@ public class Chopstick {
 //		sprite.setOrigin(getMiddle()[0], getMiddle()[1]);
 	}
 	
-	public void moveChopstickWhenUnClicked(Sprite sprite) {
+	public void moveChopstick(Sprite sprite) {
 		if(originX != originalOriginX)
 		{
 			originX = originalOriginX;

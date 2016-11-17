@@ -13,7 +13,7 @@ public class World {
 	private int LIFE;
 	private float LAST_DISAPPEAR = 0;
 	private float LAST_CHOPSTICKCHECKED = 0;
-//	private Chopstick chopstick;
+	private Chopstick chopstick;
 //	private boolean isChopstickClicked = false;
 //	public boolean wasChopstickClicked = false;
 	public boolean[] positionFood;
@@ -26,7 +26,7 @@ public class World {
 
 	public World(ShabuGame shabuGame) {
 		this.shabuGame = shabuGame;
-//		chopstick = new Chopstick();
+		chopstick = new Chopstick();
 		positionFood = new boolean[8];
 		initPositionFood();
 		foodList = new FoodList(this);
@@ -70,9 +70,9 @@ public class World {
 		return stage;
 	}
 	
-//	public Chopstick getChopstick() {
-//		return chopstick;
-//	}
+	public Chopstick getChopstick() {
+		return chopstick;
+	}
 //	
 //	public boolean getChopstickClicked() {
 //		return isChopstickClicked;
@@ -87,7 +87,7 @@ public class World {
 //	}
 	
 	public void update(float delta) {
-//		foodList.foodDisappearDependDuration();
+		foodList.foodDisappearDependDuration();
 		foodList.releaseFood(delta);
 		updateFood();
 		LAST_DISAPPEAR += delta;
@@ -95,8 +95,8 @@ public class World {
 			checkStage();
 		}
 //		LAST_CHOPSTICKCHECKED += delta;
-//		chopstick.randomSpeed();
-//		chopstick.moveAroundPot();
+		chopstick.randomSpeed();
+		chopstick.moveAroundPot();
 		
 	}
 

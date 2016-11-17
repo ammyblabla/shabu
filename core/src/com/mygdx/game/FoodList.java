@@ -86,30 +86,14 @@ public class FoodList {
 		if(HOWLONGLASTFOOD >= DELAY) {
 			String nameFood = randomFood();
 			int random = world.randomNum();			
-//			System.out.println("zero" + zero.x + zero.y);
-			Vector2 foodPosition = world.generatePosition(new Texture("meat1.png"), random);
-//			System.out.println(foodPosition.isZero());
+			Vector2 foodPosition = world.generatePosition(new Texture(nameFood + ".png"), random);
+
 			if(!foodPosition.isZero()) {			
 				Food food = null;
-//				Food food = new Food("meat1", world.getTime(), this.world, foodPosition);
-//				System.out.println("food " + food.getPosition().x + " " +food.getPosition().y);
-
-				if(nameFood == "corn") {
-					food = new Corn(nameFood, world.getTime(), this.world, foodPosition);
-				} else if(nameFood == "babycorn") {
-					food = new Babycorn(nameFood, world.getTime(), this.world, foodPosition);
-				}else {
-					food = new Food(nameFood,world.getTime(),this.world, foodPosition);
-				}
-				food.positionNumber = random;
-
-//				chooseConstructor(food,nameFood);
+				food = chooseConstructor(food,nameFood, foodPosition, random);
 				foods.add(food);
 				HOWLONGLASTFOOD = 0; 
 			} 
-//			else {
-//				System.out.println("regen position");
-//			}
 		}
 	}
 	
@@ -128,13 +112,16 @@ public class FoodList {
 		DELAY = i;
 	}
 	
-	private void chooseConstructor(Food food, String nameFood) {
-		Texture tmpTexture = new Texture("meat1");
-//		if(nameFood == "corn") {
-//			food = new Corn(nameFood, world.getTime(), this.world,world);
-//		} else {
-//			food = new Food("meat1",world.getTime(),this.world,world.generatePosition(tmpTexture));
-//		}
+	private Food chooseConstructor(Food food, String nameFood, Vector2 foodPosition, int random) {
+		if(nameFood == "corn") {
+			food = new Corn(nameFood, world.getTime(), this.world, foodPosition);
+		} else if(nameFood == "babycorn") {
+			food = new Babycorn(nameFood, world.getTime(), this.world, foodPosition);
+		}else {
+			food = new Food(nameFood,world.getTime(),this.world, foodPosition);
+		}
+		food.positionNumber = random;
+		return food;
 	}
 	
 	public void addListFood(String nameFood) {

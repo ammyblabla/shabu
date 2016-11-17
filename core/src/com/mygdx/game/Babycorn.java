@@ -11,7 +11,8 @@ public class Babycorn extends Food{
 	@Override
 	public void eated() {
 		getWorld().increaseScore();
-		getWorld().increaseLife();
+		if(getWorld().getLife() < 3)
+			getWorld().increaseLife();
 	}
 	
 	@Override

@@ -35,7 +35,7 @@ public class WorldRenderer {
 		
 		batch.begin();
 		batch.draw(shabuImg,0,0);
-//		drawChopstickBySprite(batch);
+		drawChopstickBySprite(batch);
 		drawText(batch);
 		drawFood(batch);
 		batch.end();
@@ -82,23 +82,20 @@ public class WorldRenderer {
 		stageText.draw(batch, "stage: " + world.getStage(),50, 200);
 	}
 	
-//	private void drawChopstickBySprite(SpriteBatch batch) {
-//		Texture chopstickImg = world.getChopstick().getChopstickImg();		
-//		float[] origin = world.getChopstick().getOrigin();
-//		float[] middleChopstick = world.getChopstick().getMiddle();		
-//		float width = world.getChopstick().getChopstickImg().getWidth();
-//		float height = world.getChopstick().getChopstickImg().getHeight();
-//		
-//		Sprite sprite = new Sprite(chopstickImg);
-//		sprite.setPosition(origin[0] - 0.5f * width, origin[1] - 0.5f * height);
-//		if(world.getChopstickClicked()) {
-//			world.getChopstick().moveChopstickWhenClicked(sprite);
-//		} else {
-//			world.getChopstick().moveChopstickWhenUnClicked(sprite);
-//		}
-//		sprite.setOrigin(middleChopstick[0], middleChopstick[1]);
-//		sprite.setRotation(world.getChopstick().getAngle());
-//		sprite.draw(batch);	
-//		
-//	}
+	private void drawChopstickBySprite(SpriteBatch batch) {
+		Texture chopstickImg = world.getChopstick().getChopstickImg();		
+		float[] origin = world.getChopstick().getOrigin();
+		float[] middleChopstick = world.getChopstick().getMiddle();		
+		float width = world.getChopstick().getChopstickImg().getWidth();
+		float height = world.getChopstick().getChopstickImg().getHeight();
+		
+		Sprite sprite = new Sprite(chopstickImg);
+		sprite.setPosition(origin[0] - 0.5f * width, origin[1] - 0.5f * height);
+		world.getChopstick().moveChopstick(sprite);
+		
+		sprite.setOrigin(middleChopstick[0], middleChopstick[1]);
+		sprite.setRotation(world.getChopstick().getAngle());
+		sprite.draw(batch);	
+		
+	}
 }
