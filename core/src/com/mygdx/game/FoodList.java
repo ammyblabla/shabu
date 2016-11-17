@@ -27,7 +27,7 @@ public class FoodList {
 		listOfFood.add("ham_cheese");
 		listOfFood.add("pork1");
 		listOfFood.add("pork2");
-		listOfFood.add("babycorn");
+//		listOfFood.add("babycorn");
 		listOfFood.add("corn");
 	}
 	
@@ -117,5 +117,9 @@ public class FoodList {
 		} else {
 			food = new Food(nameFood,world.getTime(),this.world);
 		}
+	}
+	
+	public void addListFood(String nameFood) {
+		listOfFood.add(nameFood);
 	}
 }

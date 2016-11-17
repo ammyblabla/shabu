@@ -155,10 +155,15 @@ public class World {
 	public void setStage() {
 		if(stage == 2) {
 			foodList.setDelay(2.25f);
+			foodList.addListFood("babycorn");
 		}
 	}
 	
 	public void checkStage() {
+//		if(score > 20) {
+//			stage = 3;
+//			setStage();
+//		} else 
 		if(score > 10) {
 			stage = 2;
 			setStage();
