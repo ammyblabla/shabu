@@ -1,8 +1,10 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.math.Vector2;
+
 public class Babycorn extends Food{
-	public Babycorn(String imagefile, long bornTime, World world) {
-		super(imagefile, bornTime, world);
+	public Babycorn(String imagefile, long bornTime, World world, Vector2 position) {
+		super(imagefile, bornTime, world, position);
 		setSook(true);
 	}
 	

@@ -1,6 +1,10 @@
 package com.mygdx.game;
 
 import java.util.List;
+import java.util.Random;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Vector2;
 
 public class World {
 	private ShabuGame shabuGame;
@@ -14,7 +18,11 @@ public class World {
 //	public boolean wasChopstickClicked = false;
 	public boolean[] positionFood;
 	public boolean isGameOver = false;
+	private float xStart = 384;
 	private int stage = 1;
+	private float radius;
+	private float originX;
+	private float originY;
 
 	public World(ShabuGame shabuGame) {
 		this.shabuGame = shabuGame;
@@ -178,6 +186,35 @@ public class World {
 //			System.out.println("stage 2");
 		}
 		
+	}
+	
+	public Vector2 generatePosition(Texture foodImg,int random) {
+//		calculateCircleEquation(float xStart, float xEnd, float yStart, float yEnd);
+		calculateCircleEquation(xStart,654,371,101, foodImg);
+		
+		Random rand = new Random();
+//		float x = rand.nextInt(2*(int)radius+1) + originX - radius;
+//		int random = rand.nextInt(5);
+		if(positionFood[random] == true) {
+			return new Vector2();
+		}
+		positionFood[random] = true;
+		System.out.println(positionFood[random]+ " " + random);
+		float x = ((random-1) * radius)/2 + xStart + foodImg.getWidth()/2;
+		float power = rand.nextInt(2);
+		double y = Math.pow(-1, power) * Math.sqrt(Math.abs(Math.pow(x-originX,2) - Math.pow(radius,2)))+originY; 
+		return new Vector2(x,(float) y);
+	}
+	
+	public int randomNum() {
+		Random rand = new Random();
+		return rand.nextInt(5);
+	}
+	
+	private void calculateCircleEquation(float xStart, float xEnd, float yStart, float yEnd, Texture foodImg) {
+		radius = Math.abs(xEnd-xStart)/2;
+		originX = Math.min(xStart, xEnd) + radius - foodImg.getWidth()/2;
+		originY = Math.min(yStart, yEnd) + radius - foodImg.getHeight()/2;
 	}
 }
 

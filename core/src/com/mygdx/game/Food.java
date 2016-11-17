@@ -23,16 +23,17 @@ public class Food {
 	public int positionNumber;
 	private int decreaseScore = 3;
 	
-	public Food(String imagefile, long bornTime, World world) {
+	public Food(String imagefile, long bornTime, World world, Vector2 position) {
 		this.setWorld(world);
 		foodImg = new Texture(imagefile+".png");
 		this.bornTime = bornTime;
 		this.imagefile = imagefile;
-		generatePosition();
+		this.position = position;
+//		generatePosition();
 	 
 	}
 	
-	private void generatePosition() {
+	public void generatePosition() {
 //		calculateCircleEquation(float xStart, float xEnd, float yStart, float yEnd);
 		calculateCircleEquation(xStart,654,371,101);
 		
