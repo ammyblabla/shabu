@@ -85,17 +85,6 @@ public class Chopstick {
 		speed = (float)(rand.nextInt(250))/100f;
 	}
 	
-	public void moveChopstickWhenClicked(Sprite sprite) {
-		float x = move;
-		float y = x * (float)Math.tan(angle);
-		if(originX < originalOriginX+x) {
-			originX += x;
-			originY += y;
-		}
-		sprite.setPosition(originX - 0.5f * chopstickImg.getWidth() + x, originY - 0.5f * chopstickImg.getHeight() + y);
-//		sprite.setOrigin(getMiddle()[0], getMiddle()[1]);
-	}
-	
 	public void moveChopstick(Sprite sprite) {
 		if(originX != originalOriginX)
 		{
@@ -108,9 +97,5 @@ public class Chopstick {
 	
 	public void setSpeed(float set) {
 		speed = set;
-	}
-	
-	public void setToOldSpeed() {
-		speed = oldSpeed;
 	}
 }
