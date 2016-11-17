@@ -27,7 +27,7 @@ public class World {
 	public World(ShabuGame shabuGame) {
 		this.shabuGame = shabuGame;
 //		chopstick = new Chopstick();
-		positionFood = new boolean[5];
+		positionFood = new boolean[8];
 		initPositionFood();
 		foodList = new FoodList(this);
 		LIFE = 3;
@@ -199,16 +199,22 @@ public class World {
 			return new Vector2();
 		}
 		positionFood[random] = true;
+		int randomX = random;
+		int randomY = 0;
+		if(randomX > 4) {
+			randomX -= 4;
+			randomY = 1;
+		}
 		System.out.println(positionFood[random]+ " " + random);
-		float x = ((random-1) * radius)/2 + xStart + foodImg.getWidth()/2;
+		float x = ((randomX-1) * radius)/2 + xStart + foodImg.getWidth()/2;
 		float power = rand.nextInt(2);
-		double y = Math.pow(-1, power) * Math.sqrt(Math.abs(Math.pow(x-originX,2) - Math.pow(radius,2)))+originY; 
+		double y = Math.pow(-1, randomY) * Math.sqrt(Math.abs(Math.pow(x-originX,2) - Math.pow(radius,2)))+originY; 
 		return new Vector2(x,(float) y);
 	}
 	
 	public int randomNum() {
 		Random rand = new Random();
-		return rand.nextInt(5);
+		return rand.nextInt(8);
 	}
 	
 	private void calculateCircleEquation(float xStart, float xEnd, float yStart, float yEnd, Texture foodImg) {

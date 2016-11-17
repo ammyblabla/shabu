@@ -14,7 +14,6 @@ public class FoodList {
 	private float HOWLONGLASTFOOD;
 	private float DELAY = 2;
 	private List<String> listOfFood;
-	private static Vector2 zero  = new Vector2();
 //	private float distanceBetween2food;
 
 	public FoodList(World world) {
@@ -89,7 +88,7 @@ public class FoodList {
 			int random = world.randomNum();			
 //			System.out.println("zero" + zero.x + zero.y);
 			Vector2 foodPosition = world.generatePosition(new Texture("meat1.png"), random);
-			System.out.println(foodPosition.isZero());
+//			System.out.println(foodPosition.isZero());
 			if(!foodPosition.isZero()) {			
 	//			Food food = null;
 				Food food = new Food("meat1", world.getTime(), this.world, foodPosition);
