@@ -17,12 +17,13 @@ public class World {
 //	private boolean isChopstickClicked = false;
 //	public boolean wasChopstickClicked = false;
 	public boolean[] positionFood;
-	public boolean isGameOver = false;
+	public static boolean isGameOver = false;
 	private float xStart = 384;
 	private int stage = 1;
 	private float radius;
 	private float originX;
 	private float originY;
+	private boolean isGameStart = false;
 
 	public World(ShabuGame shabuGame) {
 		this.shabuGame = shabuGame;
@@ -36,14 +37,19 @@ public class World {
 	
 	public void increaseScore() {
 		score++;
+		isGameStart = true;
+
 	}
 	
 	public void increaseScore(int i) {
 		score += i;
+		isGameStart = true;
+
 	}
 	
 	public void decreaseScore(int i) {
 		score -= i;
+		isGameStart = true;
 	}
 	
 	public void decreaseLife() {
@@ -79,6 +85,12 @@ public class World {
 	}
 	
 	public void update(float delta) {
+		System.out.println("game over " + isGameOver);
+		if(LIFE <= 0) {
+			isGameOver = true;
+			System.out.println("over");
+		}
+//		isGameStart = true;
 		foodList.foodDisappearDependDuration();
 		foodList.releaseFood(delta);
 		updateFood();
@@ -86,8 +98,9 @@ public class World {
 		if(score % 5 == 0) {
 			checkStage();
 		}
-		chopstick.randomSpeed();
+		chopstick.randomSpeed();		
 		chopstick.moveAroundPot();
+		
 		
 	}
 
@@ -146,18 +159,18 @@ public class World {
 	public void setStage() {
 		if(stage == 2) {
 			foodList.setDelay(1.5f);
-			if(!foodList.isInList("babycorn")) {
-				foodList.addListFood("babycorn");
-			}
-		} else if (stage == 3) {
 			if(!foodList.isInList("coriander")) {
 				foodList.addListFood("coriander");
 			}
-			foodList.setDelay(1f);
+		} else if (stage == 3) {
+			if(!foodList.isInList("babycorn")) {
+				foodList.addListFood("babycorn");
+			}
+			foodList.setDelay(1.25f);
 		} else if (stage == 4) {
-			foodList.setDelay(0.5f);
+			foodList.setDelay(1f);
 		} else if (stage == 5) {
-			foodList.setDelay(0.3f);
+			foodList.setDelay(0.5f);
 		}
 	}
 	
@@ -192,7 +205,7 @@ public class World {
 			randomX -= 4;
 			randomY = 1;
 		}
-		System.out.println(positionFood[random]+ " " + random);
+//		System.out.println(positionFood[random]+ " " + random);
 		float x = ((randomX-1) * radius)/2 + xStart + foodImg.getWidth()/2;
 		double y = Math.pow(-1, randomY) * Math.sqrt(Math.abs(Math.pow(x-originX,2) - Math.pow(radius,2)))+originY; 
 		return new Vector2(x,(float) y);

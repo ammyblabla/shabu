@@ -116,9 +116,9 @@ public class FoodList {
 		else if (nameFood == "ham_cheese") {
 			food = new HamCheese(nameFood, world.getTime(), this.world, foodPosition);
 		} 
-//		else if (nameFood == "coriander") {
-//			food = new Coriander(nameFood, world.getTime(), this.world, foodPosition);
-//		}
+		else if (nameFood == "coriander") {
+			food = new Coriander(nameFood, world.getTime(), this.world, foodPosition);
+		}
 		else {
 			food = new Food(nameFood,world.getTime(),this.world, foodPosition);
 		}

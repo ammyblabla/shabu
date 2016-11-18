@@ -9,7 +9,6 @@ public class GameScreen extends ScreenAdapter {
 	private World world;
 	private WorldRenderer worldRenderer;
 	private float clickDelay = 0.5f;
-//	private float clickDelayChopstick = 1;
 	private PauseScreen pauseScreen;
 	private GameOverScreen gameOverScreen;
 	private static long dieTime = 0;
@@ -81,9 +80,9 @@ public class GameScreen extends ScreenAdapter {
 //		}
 		if(dieTime < world.getTime() && dieTime > 0) {
 			gameOverScreen.render(delta);
-			isDie = true;
+			world.setGameOver();
 			return true;
-		} else if(world.getLife() == 0 && dieTime <= world.getTime()) {
+		} else if(World.isGameOver == true && dieTime <= world.getTime()) {
 			dieTime = world.getTime();
 			worldRenderer.render(delta);
 			return true;
