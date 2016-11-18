@@ -14,14 +14,11 @@ public class FoodList {
 	private float HOWLONGLASTFOOD;
 	private float DELAY = 2;
 	private List<String> listOfFood;
-//	private float distanceBetween2food;
 
 	public FoodList(World world) {
 		this.world = world;
 		listOfFood = new ArrayList<String>();
 		initListOfFood();
-//		initFood();
-//		world.printArr(world.getPositionFood());
 	}
 	
 	public void initListOfFood() {
@@ -50,13 +47,11 @@ public class FoodList {
 			if (deltaX >= 0 && deltaX <= food.getFoodImg().getWidth() && 
 				deltaY >= 0 && deltaY <= food.getFoodImg().getHeight()) {
 				Food tmp = foods.get(i);
-//				System.out.println(tmp.getIsSook());				
 				if(tmp.getIsSook() == false) {
 					world.decreaseScore(tmp.getDecreaseScore());
 				} else {
 					tmp.eated();
 				}
-				System.out.println(tmp.positionNumber + " " + tmp.getPosition().x);
 				world.positionFood[tmp.positionNumber] = false;
 				foods.remove(foods.get(i));
 				return true;
@@ -112,11 +107,19 @@ public class FoodList {
 	}
 	
 	private Food chooseConstructor(Food food, String nameFood, Vector2 foodPosition, int random) {
+		System.out.println(nameFood);
 		if(nameFood == "corn") {
 			food = new Corn(nameFood, world.getTime(), this.world, foodPosition);
 		} else if(nameFood == "babycorn") {
 			food = new Babycorn(nameFood, world.getTime(), this.world, foodPosition);
-		}else {
+		} 
+		else if (nameFood == "ham_cheese") {
+			food = new HamCheese(nameFood, world.getTime(), this.world, foodPosition);
+		} 
+//		else if (nameFood == "coriander") {
+//			food = new Coriander(nameFood, world.getTime(), this.world, foodPosition);
+//		}
+		else {
 			food = new Food(nameFood,world.getTime(),this.world, foodPosition);
 		}
 		food.positionNumber = random;

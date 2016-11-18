@@ -40,11 +40,6 @@ public class Food {
 		Random rand = new Random();
 //		float x = rand.nextInt(2*(int)radius+1) + originX - radius;
 		int random = rand.nextInt(5);
-//		while(world.isPositionFood(random) == true) {
-//			random = rand.nextInt(5);
-//		}
-//		world.setPositionFoodTrue(random);
-		
 		float x = ((random-1) * radius)/2 + xStart + foodImg.getWidth()/2;
 		float power = rand.nextInt(2);
 		double y = Math.pow(-1, power) * Math.sqrt(Math.abs(Math.pow(x-originX,2) - Math.pow(radius,2)))+originY; 
@@ -85,6 +80,10 @@ public class Food {
 		return DURATION;
 	}
 	
+	public void setDuration(int i) {
+		DURATION = i;
+	}
+	
 	public boolean getIsSook() {
 		return isSook();
 	}
@@ -94,11 +93,6 @@ public class Food {
 		originX = Math.min(xStart, xEnd) + radius - foodImg.getWidth()/2;
 		originY = Math.min(yStart, yEnd) + radius - foodImg.getHeight()/2;
 	}
-	
-	private void setPos(float x, float y) {
-		Vector2 tmp = new Vector2(x,y);
-		this.position = tmp.cpy();
-	}	
 	
 	public void setNewPicture(String name) {
 		Texture tmp = new Texture(name + ".png");

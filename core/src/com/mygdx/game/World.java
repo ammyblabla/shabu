@@ -38,6 +38,10 @@ public class World {
 		score++;
 	}
 	
+	public void increaseScore(int i) {
+		score += i;
+	}
+	
 	public void decreaseScore(int i) {
 		score -= i;
 	}
@@ -73,18 +77,6 @@ public class World {
 	public Chopstick getChopstick() {
 		return chopstick;
 	}
-//	
-//	public boolean getChopstickClicked() {
-//		return isChopstickClicked;
-//	}
-//	
-//	public void setChopstickClickedTrue() {
-//		isChopstickClicked = true;
-//	}
-//	
-//	public void setChopstickClickedFalse() {
-//		isChopstickClicked = false;
-//	}
 	
 	public void update(float delta) {
 		foodList.foodDisappearDependDuration();
@@ -144,20 +136,6 @@ public class World {
 		return positionFood;
 	}
 	
-	public boolean isPositionFood(int i) {
-		return positionFood[i];
-	}
-	
-	public void setPositionFoodFalse(int i) {
-		positionFood[i] = false;
-		System.out.println(positionFood[i]);
-	}
-	
-	public void setPositionFoodTrue(int i) {
-		positionFood[i] = true;
-		System.out.println(positionFood[i]);
-	}
-	
 	public void printArr(boolean[] arr) {
 		for(int i=0; i<arr.length; i++) {
 			System.out.print(i+" ");
@@ -168,9 +146,13 @@ public class World {
 	public void setStage() {
 		if(stage == 2) {
 			foodList.setDelay(1.5f);
-			if(!foodList.isInList("babycorn"))
+			if(!foodList.isInList("babycorn")) {
 				foodList.addListFood("babycorn");
+			}
 		} else if (stage == 3) {
+			if(!foodList.isInList("coriander")) {
+				foodList.addListFood("coriander");
+			}
 			foodList.setDelay(1f);
 		} else if (stage == 4) {
 			foodList.setDelay(0.5f);
@@ -188,9 +170,7 @@ public class World {
 			stage = 3;
 		} else if(score == 5) {
 			stage = 2;
-		} else {
-			foodList.setDelay(0.3f);
-		}
+		} 
 		setStage();
 		
 	}
@@ -214,7 +194,6 @@ public class World {
 		}
 		System.out.println(positionFood[random]+ " " + random);
 		float x = ((randomX-1) * radius)/2 + xStart + foodImg.getWidth()/2;
-		float power = rand.nextInt(2);
 		double y = Math.pow(-1, randomY) * Math.sqrt(Math.abs(Math.pow(x-originX,2) - Math.pow(radius,2)))+originY; 
 		return new Vector2(x,(float) y);
 	}
@@ -228,6 +207,10 @@ public class World {
 		radius = Math.abs(xEnd-xStart)/2;
 		originX = Math.min(xStart, xEnd) + radius - foodImg.getWidth()/2;
 		originY = Math.min(yStart, yEnd) + radius - foodImg.getHeight()/2;
+	}
+	
+	public void setGameOver() {
+		isGameOver = true;
 	}
 }
 
