@@ -24,7 +24,7 @@ public class FoodList {
 	public void initListOfFood() {
 		listOfFood.add("meat1");
 		listOfFood.add("meat2");
-		listOfFood.add("ham_cheese");
+//		listOfFood.add("ham_cheese");
 		listOfFood.add("pork1");
 		listOfFood.add("pork2");
 //		listOfFood.add("babycorn");

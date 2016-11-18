@@ -168,9 +168,15 @@ public class World {
 			}
 			foodList.setDelay(1.25f);
 		} else if (stage == 4) {
+			if(!foodList.isInList("ham_cheese")) {
+				foodList.addListFood("ham_cheese");
+			}
 			foodList.setDelay(1f);
 		} else if (stage == 5) {
 			foodList.setDelay(0.5f);
+			if(!foodList.isInList("corn")) {
+				foodList.addListFood("corn");
+			}
 		}
 	}
 	
