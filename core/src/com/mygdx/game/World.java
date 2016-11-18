@@ -85,10 +85,10 @@ public class World {
 	}
 	
 	public void update(float delta) {
-		System.out.println("game over " + isGameOver);
+//		System.out.println("game over " + isGameOver);
 		if(LIFE <= 0) {
 			isGameOver = true;
-			System.out.println("over");
+//			System.out.println("over");
 		}
 //		isGameStart = true;
 		foodList.foodDisappearDependDuration();
