@@ -197,10 +197,7 @@ public class World {
 	public Vector2 generatePosition(Texture foodImg,int random) {
 //		calculateCircleEquation(float xStart, float xEnd, float yStart, float yEnd);
 		calculateCircleEquation(xStart,654,371,101, foodImg);
-		
-		Random rand = new Random();
-//		float x = rand.nextInt(2*(int)radius+1) + originX - radius;
-//		int random = rand.nextInt(5);
+
 		if(positionFood[random] == true) {
 			return new Vector2();
 		}
@@ -211,7 +208,6 @@ public class World {
 			randomX -= 4;
 			randomY = 1;
 		}
-//		System.out.println(positionFood[random]+ " " + random);
 		float x = ((randomX-1) * radius)/2 + xStart + foodImg.getWidth()/2;
 		double y = Math.pow(-1, randomY) * Math.sqrt(Math.abs(Math.pow(x-originX,2) - Math.pow(radius,2)))+originY; 
 		return new Vector2(x,(float) y);

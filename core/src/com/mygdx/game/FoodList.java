@@ -73,7 +73,6 @@ public class FoodList {
 			if (world.getTime() - food.getBornTime() >= food.getDuration()) {
 				world.positionFood[food.positionNumber] = false;
 				foods.remove(foods.get(i));
-			
 			}
 		}
 	}
