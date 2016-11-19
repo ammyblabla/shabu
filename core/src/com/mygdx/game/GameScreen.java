@@ -72,12 +72,6 @@ public class GameScreen extends ScreenAdapter {
 	}
 	
 	private boolean setGameOverScreen (float delta) {
-//		if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER) && isDie == true) {
-//			World tmp = new World(shabuGame);
-//			this.world = tmp;
-//			isDie = false;
-//			return true;
-//		}
 		if(dieTime < world.getTime() && dieTime > 0) {
 			gameOverScreen.render(delta);
 			world.setGameOver();

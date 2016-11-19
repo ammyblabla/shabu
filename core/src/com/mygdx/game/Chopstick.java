@@ -12,7 +12,7 @@ public class Chopstick {
 	private static float originX, originY, radius, angle, originalOriginX, originalOriginY;
 //	private float move = 25;
 	private static float speed = 0.000000000001f;
-//	private static float oldSpeed;
+	private static float oldSpeed;
 
 	
 	public Chopstick() {

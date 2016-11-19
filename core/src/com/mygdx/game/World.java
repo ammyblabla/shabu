@@ -140,7 +140,7 @@ public class World {
 	}
 	
 	private void initPositionFood() {
-		for(int i=0; i<positionFood.length; i++) {
+		for(int i = 0; i < positionFood.length; i++) {
 			positionFood[i] = false;
 		}
 	}
@@ -150,7 +150,7 @@ public class World {
 	}
 	
 	public void printArr(boolean[] arr) {
-		for(int i=0; i<arr.length; i++) {
+		for(int i = 0; i < arr.length; i++) {
 			System.out.print(i+" ");
 		}
 		System.out.println();
